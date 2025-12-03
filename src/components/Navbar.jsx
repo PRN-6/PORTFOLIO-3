@@ -4,10 +4,10 @@ import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Navbar = () => {
   return (
-    <header >
+    <header className='md' >
         <div className='mx-auto h-16 p-4 bg-black'>
             <div className='flex items-center justify-between'>
-                <div className='flex items-end justify-end gap-6 w-full px-6 text-1xl'>
+                <div className='flex w-full justify-between sm:justify-end gap-6 px-2 sm:px-6 text-sm '>
                     <Link to={"/about"}>
                         <h3>
                             About
