@@ -61,7 +61,7 @@ const Home = () => {
                         />
 
                         {/* Social Links */}
-                        <div ref={linkRef} className="flex gap-6 lg:flex-col lg:gap-6 ml-10 mt-10 text-gray-300">
+                        <div ref={linkRef} className="flex justify-center gap-6 lg:flex-col lg:gap-6 lg:ml-10 mt-10 text-gray-300">
                             <a href="https://github.com/PRN-6" className="flex items-center gap-2 hover:text-blue-300">
                                 <FaGithub className="w-6 h-6" />
                                 <span className="hidden lg:inline">Github</span>
