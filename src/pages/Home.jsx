@@ -77,10 +77,10 @@ const Home = () => {
                                 <span className="hidden lg:inline">Twitter</span>
                             </a>
 
-                            <div className="flex items-center gap-2">
+                            <a href="mailto:prinsonroyal1@gmail.com" className="flex items-center gap-2 hover:text-blue-300">
                                 <SiGmail className="w-6 h-6" />
                                 <span className="hidden lg:inline">prinsonroyal1@gmail.com</span>
-                            </div>
+                            </a>
                         </div>
 
                     </div>
@@ -120,18 +120,25 @@ const Home = () => {
                 </div>
 
                 {/* RIGHT SECTION — PROJECTS */}
-                <div className="w-full lg:w-1/2 p-6 lg:p-12 h-auto lg:h-screen lg:overflow-y-auto">
-                    <h1 className="mb-6 text-2xl">Projects</h1>
+                <div className="w-full lg:w-1/2 p-6 lg:p-12 h-auto lg:h-screen lg:overflow-y-auto hide-scrollbar">
 
+                    {/* WORKING ON IT */}
+                    {/* <div>
+                        <h1 className="mb-6 text-2xl">Experience</h1>
+                    </div> */}
+
+                    {/* PROJECT DISPLAY SECTION */}
+                    <h1 className="mb-6 text-2xl">Projects</h1>
                     <div ref={projectRef} className="flex flex-col sm:flex-row items-center gap-4">
-                        <div className="w-full sm:w-1/2 h-80 rounded-2xl bg-amber-900 flex items-center justify-center">
+                        <div className="w-full sm:w-1/2 h-100 rounded-2xl bg-amber-900 flex items-center justify-center">
                             left
                         </div>
-                        <div className="w-full sm:w-1/2 h-40 rounded-2xl bg-fuchsia-700 flex items-center justify-center">
+                        <div className="w-full sm:w-1/2 h-100 rounded-2xl bg-fuchsia-700 flex items-center justify-center">
                             right
                         </div>
                     </div>
 
+                    {/* TECHONLOGY & TOOLS I USE */}
                     <div className="mt-6">
                         <h1 className="text-2xl">Technologies & Tools</h1>
                     </div>
