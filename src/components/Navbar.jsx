@@ -16,7 +16,7 @@ const Navbar = () => {
     <header className='md' >
         <div className='mx-auto h-16 p-4 bg-black'>
             <div className='flex items-center justify-between'>
-                <div ref={navLink} className='flex w-full justify-between sm:justify-end gap-6 px-2 sm:px-6 text-sm '>
+                <div ref={navLink} className='flex w-full justify-between text-gray-400 sm:justify-end gap-6 px-2 sm:px-6 text-sm '>
                     <Link to={"/about"}>
                         <h3>
                             About

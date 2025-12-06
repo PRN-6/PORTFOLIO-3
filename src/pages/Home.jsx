@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Navbar from '../components/Navbar'
 import profileImage from '../assets/profilephoto.jpg'
 import { FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
-import { SiExpress, SiGmail, SiMongodb, SiRust } from 'react-icons/si'
+import { SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiRust, SiTailwindcss } from 'react-icons/si'
 import { FaXTwitter } from 'react-icons/fa6'
 import { DotIcon } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
@@ -61,7 +61,7 @@ const Home = () => {
                         />
 
                         {/* Social Links */}
-                        <div ref={linkRef} className="flex gap-6 lg:flex-col lg:gap-6 pt-4">
+                        <div ref={linkRef} className="flex gap-6 lg:flex-col lg:gap-6 ml-10 mt-10 text-gray-300">
                             <a href="https://github.com/PRN-6" className="flex items-center gap-2 hover:text-blue-300">
                                 <FaGithub className="w-6 h-6" />
                                 <span className="hidden lg:inline">Github</span>
@@ -99,13 +99,13 @@ const Home = () => {
                         className= "p-4 rounded-md text-center lg:text-left"
                     >
                        
-                        <h2 ref={heroInfoRef} >I'm a self-taught developer with a strong passion for building clean, user-friendly applications.<strong> I love learning new technologies and constantly improving my skills.</strong>
+                        <h2 ref={heroInfoRef} ><span className='text-gray-300'>I'm a self-taught developer with a strong passion for building clean, user-friendly applications.</span><strong> I love learning new technologies and constantly improving my skills.</strong>
                         </h2>
                     </div>
 
                     {/* STACK */}
-                    <h2 className="pt-6 text-center lg:text-left">
-                        Leveling up in:
+                    <h2 className="pt-6 text-center lg:text-left ">
+                        <span className=' text-gray-300'>Leveling up in:</span>
                         <div
                             ref={heroStackRef}
                             className="flex flex-wrap justify-center lg:justify-start items-center gap-3 pt-3"
@@ -139,8 +139,21 @@ const Home = () => {
                     </div>
 
                     {/* TECHONLOGY & TOOLS I USE */}
-                    <div className="mt-6">
-                        <h1 className="text-2xl">Technologies & Tools</h1>
+                        <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
+                    <div className="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-6 mt-6 gap-12 p-5 text-gray-400">
+
+
+                            <div><SiJavascript className="w-8 h-8"/>Javascript</div>
+                            <div><SiExpress className="w-8 h-8"/>ExpressJS</div>
+                            <div><SiTailwindcss className="w-8 h-8"/>Tailwind CSS</div>
+                            <div><SiCss3 className="w-8 h-8"/>CSS</div>
+                            <div><SiHtml5 className="w-8 h-8"/>Html</div>
+                            <div><FaReact className="w-8 h-8" /> React </div>
+                            <div><SiExpress className="w-8 h-8" />Express  </div>
+                            <div><FaNode className="w-8 h-8" />Node</div>  
+                            <div><SiMongodb className="w-8 h-8" />Mongodb </div> 
+                            <div><SiRust className="w-8 h-8" />Rust </div>
+                        
                     </div>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eius esse vitae nostrum obcaecati qui voluptas quia voluptate. Amet debitis aliquam in cum sed neque beatae natus fugiat error nihil!
                     Fugiat voluptatum earum est illo dolorem minima perferendis, obcaecati et ipsa, quo perspiciatis doloribus tempore rem temporibus rerum beatae natus! Dicta consequatur reiciendis eius suscipit a repudiandae iure repellat velit.
