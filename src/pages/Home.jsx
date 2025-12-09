@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Navbar from '../components/Navbar'
 import profileImage from '../assets/profilephoto.jpg'
 import { FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
-import { SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiRust, SiTailwindcss } from 'react-icons/si'
+import { SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiPostman, SiRust, SiTailwindcss } from 'react-icons/si'
 import { FaXTwitter } from 'react-icons/fa6'
 import { DotIcon } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
@@ -141,8 +141,6 @@ const Home = () => {
                     {/* TECHONLOGY & TOOLS I USE */}
                         <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
                     <div className="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-6 mt-6 gap-12 p-5 text-gray-400">
-
-
                             <div><SiJavascript className="w-8 h-8"/>Javascript</div>
                             <div><SiExpress className="w-8 h-8"/>ExpressJS</div>
                             <div><SiTailwindcss className="w-8 h-8"/>Tailwind CSS</div>
@@ -153,7 +151,7 @@ const Home = () => {
                             <div><FaNode className="w-8 h-8" />Node</div>  
                             <div><SiMongodb className="w-8 h-8" />Mongodb </div> 
                             <div><SiRust className="w-8 h-8" />Rust </div>
-                        
+                            <div><SiPostman className="w-8 h-8"/>Postman</div>
                     </div>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eius esse vitae nostrum obcaecati qui voluptas quia voluptate. Amet debitis aliquam in cum sed neque beatae natus fugiat error nihil!
                     Fugiat voluptatum earum est illo dolorem minima perferendis, obcaecati et ipsa, quo perspiciatis doloribus tempore rem temporibus rerum beatae natus! Dicta consequatur reiciendis eius suscipit a repudiandae iure repellat velit.
