@@ -17,6 +17,11 @@ const Navbar = () => {
         <div className='mx-auto h-16 p-4 bg-black'>
             <div className='flex items-center justify-between'>
                 <div ref={navLink} className='flex w-full justify-between text-gray-400 sm:justify-end gap-6 px-2 sm:px-6 text-sm '>
+                    <Link to={"/"}>
+                        <h3>
+                            Home
+                        </h3>
+                    </Link>
                     <Link to={"/about"}>
                         <h3>
                             About
@@ -27,13 +32,19 @@ const Navbar = () => {
                             Projects
                         </h3>
                     </Link>
-                    <div className='btn btn-primary'>
+                    <Link to={"/resume"}>
+                        <h3>
+                            Resume
+                        </h3>
+                    </Link>
+                    {/* <div className='btn btn-primary'>
                         <FaSun size={20} className="text-white-300" />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
     </header>
+    
     )
 }
 
