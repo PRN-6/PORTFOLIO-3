@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import Navbar from '../components/Navbar'
 import profileImage from '../assets/profilephoto.jpg'
+import p1 from '../assets/p1.png'
 import { FaCode, FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
 import { SiC,
      SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiMysql, SiPostman, SiPython, SiRust, SiTailwindcss, SiVscodium } from 'react-icons/si'
@@ -133,12 +134,28 @@ const Home = () => {
 
                     {/* PROJECT DISPLAY SECTION */}
                     <h1 className="mb-6 text-2xl">Projects</h1>
-                    <div ref={projectRef} className="flex flex-col sm:flex-row items-center gap-4">
-                        <div className="w-full sm:w-1/2 h-100 rounded-2xl bg-amber-900 flex items-center justify-center">
-                            left
+                    <div ref={projectRef} className="flex flex-col sm:flex-row items-center gap-4 ">
+                        <div className="w-full sm:w-1/2 h-100 rounded-2xl flex items-center justify-center border border-gray-900">
+                            <div className="w-full h-full rounded-2xl bg-gray-900">
+                                <a href='https://prinson-06.vercel.app/' >
+                                    <img 
+                                 src={p1}
+                                 alt="" 
+                                 className=" object-cover"
+                                 /></a>
+                                 <div>
+                                    <h1 className="font-bold p-3">
+                                        Portfolio Website
+                                    </h1>   
+                                    <p className='p-3 text-gray-400'>
+                                        A modern portfolio website built with React, Tailwind CSS, and Vite.
+                                    </p>
+                                 </div>
+
+                            </div>
                         </div>
-                        <div className="w-full sm:w-1/2 h-100 rounded-2xl bg-fuchsia-700 flex items-center justify-center">
-                            right
+                        <div className="w-full sm:w-1/2 h-100 rounded-2xl  flex items-center justify-center">
+                            
                         </div>
                     </div>
 
