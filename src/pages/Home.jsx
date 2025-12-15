@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import profileImage from '../assets/profilephoto.jpg'
 import p1 from '../assets/p1.png'
 import { FaCode, FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
-import { SiC,
+import { SiBlender, SiC,
      SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiMysql, SiPostman, SiPython, SiRust, SiTailwindcss, SiVscodium } from 'react-icons/si'
 import { FaXTwitter } from 'react-icons/fa6'
 import { DotIcon } from 'lucide-react'
@@ -119,7 +119,8 @@ const Home = () => {
                             <SiRust className="size-8" /> Rust <DotIcon/>
                             <SiPython className="size-8" /> Python <DotIcon/>
                             <SiMysql className="size-8" /> MySQL <DotIcon/>
-                            <SiC className="size-8"/> C <DotIcon/>
+                            <SiC className="size-8 "/> C <DotIcon/>
+                            <SiBlender className='size-8 lg:mr-10 '/><span>Blender</span><DotIcon/>
                         </div>
                     </h2>
                 </div>
