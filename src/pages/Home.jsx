@@ -9,6 +9,7 @@ import { FaXTwitter } from 'react-icons/fa6'
 import { DotIcon } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import Projecttemp from '../components/Projecttemp'
 
 const Home = () => {
     const imageRef = useRef(null)
@@ -49,7 +50,7 @@ const Home = () => {
             <div className="flex flex-col lg:flex-row min-h-screen">
 
                 {/* LEFT SECTION */}
-                <div className="w-full lg:w-1/2 p-6 lg:p-12 lg:sticky top-0">
+                <div className="w-full pt-18 lg:w-1/2 p-6 lg:p-12 lg:sticky top-0">
 
                     {/* Image + Icons */}
                     <div className="flex flex-col items-center lg:flex-row lg:items-start gap-6">
@@ -135,30 +136,7 @@ const Home = () => {
 
                     {/* PROJECT DISPLAY SECTION */}
                     <h1 className="mb-6 text-2xl">Projects</h1>
-                    <div ref={projectRef} className="flex flex-col sm:flex-row items-center gap-4 ">
-                        <div className="w-full sm:w-1/2 h-100 rounded-2xl flex items-center justify-center border border-gray-900">
-                            <div className="w-full h-full rounded-2xl bg-gray-900">
-                                <a href='https://prinson-06.vercel.app/' >
-                                    <img 
-                                 src={p1}
-                                 alt="" 
-                                 className=" object-cover"
-                                 /></a>
-                                 <div>
-                                    <h1 className="font-bold p-3">
-                                        Portfolio Website
-                                    </h1>   
-                                    <p className='p-3 text-gray-400'>
-                                        A modern portfolio website built with React, Tailwind CSS, and Vite.
-                                    </p>
-                                 </div>
-
-                            </div>
-                        </div>
-                        <div className="w-full sm:w-1/2 h-100 rounded-2xl  flex items-center justify-center">
-                            
-                        </div>
-                    </div>
+                    <Projecttemp/>
 
                     {/* TECHONLOGY & TOOLS I USE */}
                         <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
