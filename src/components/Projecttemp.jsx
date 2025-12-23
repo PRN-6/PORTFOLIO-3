@@ -17,7 +17,7 @@ const Projecttemp = () => {
       <div ref={projectRef} className="flex flex-col sm:flex-row items-center gap-4 ">
           <div className="w-full sm:w-1/2 h-100 rounded-2xl flex items-center justify-center border border-gray-900">
               <div className="w-full h-full rounded-2xl bg-gray-900">
-                  <a href='https://prinson-06.vercel.app/' >
+                  <a href='' >
                       <img 
                     src={p1}
                     alt="" 
@@ -35,7 +35,23 @@ const Projecttemp = () => {
               </div>
           </div>
           <div className="w-full sm:w-1/2 h-100 rounded-2xl  flex items-center justify-center">
-              
+              <div className="w-full h-full rounded-2xl bg-gray-900">
+                  <a href='' >
+                      <img 
+                    src=""
+                    alt="" 
+                    className=" object-cover hover:blur-xs"
+                    /></a>
+                    <div>
+                      <h1 className="font-bold p-3">
+                          Updating....
+                      </h1>   
+                      <p className='p-3 text-gray-400'>
+                          Updating....
+                      </p>
+                    </div>
+
+              </div>
           </div>
       </div>
 

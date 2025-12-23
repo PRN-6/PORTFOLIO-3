@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import Navbar from '../components/Navbar'
 import profileImage from '../assets/profilephoto.jpg'
-import p1 from '../assets/p1.png'
 import { FaCode, FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
 import { SiBlender, SiC,
      SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiMysql, SiPostman, SiPython, SiRust, SiTailwindcss, SiVscodium } from 'react-icons/si'

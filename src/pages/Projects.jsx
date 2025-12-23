@@ -17,7 +17,7 @@ const Projects = () => {
   return (
     <div>
       <Navbar/> 
-      <div className="grid">
+      <div className="h-[calc(100vh-64px)] overflow-y-auto px-4 md:px-20 lg:px-40 xl:px-60 hide-scrollbar">
         <Projecttemp/>
       </div>    
 
