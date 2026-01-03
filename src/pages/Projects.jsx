@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import Navbar from '../components/Navbar'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import p1 from '../assets/p1.png'
 import Projecttemp from '../components/Projecttemp'
 
 const Projects = () => {
@@ -17,7 +16,7 @@ const Projects = () => {
   return (
     <div>
       <Navbar/> 
-      <div className="h-[calc(100vh-64px)] overflow-y-auto px-4 md:px-20 lg:px-40 xl:px-60 hide-scrollbar">
+      <div ref={projectRef} className="h-[calc(100vh-64px)] overflow-y-auto px-4 md:px-20 lg:px-40 xl:px-60 hide-scrollbar">
         <Projecttemp/>
       </div>    
 

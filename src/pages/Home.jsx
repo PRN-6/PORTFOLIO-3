@@ -151,7 +151,7 @@ const Home = () => {
                     <Projecttemp/>
 
                     {/* TECHONLOGY & TOOLS I USE */}
-                        <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
+                    <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
                     <div className="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-5 mt-6 gap-12 p-5 text-gray-400">
                             <div><SiJavascript className="w-8 h-8"/>Javascript</div>
                             <div><SiExpress className="w-8 h-8"/>ExpressJS</div>
