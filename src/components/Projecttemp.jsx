@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import p1 from '../assets/p1.png'
+import { FaGithub } from 'react-icons/fa'
 
 const Projecttemp = () => {
   const projectRef = useRef(null)
@@ -30,6 +31,11 @@ const Projecttemp = () => {
                       <p className='p-3 text-gray-400'>
                           A modern portfolio website built with React, Tailwind CSS, and Vite.
                       </p>
+                      <div className="p-3 w-11">
+                        <a href="https://github.com/PRN-6/PORTFOLIO-3">
+                            <FaGithub className="text-2xl hover:text-blue-400" />
+                        </a> 
+                      </div>
                     </div>
 
               </div>

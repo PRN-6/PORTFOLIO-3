@@ -133,7 +133,7 @@ const Home = () => {
                             <SiPython className="size-8" /> Python <DotIcon/>
                             <SiMysql className="size-8" /> MySQL <DotIcon/>
                             <SiC className="size-8 "/> C <DotIcon/>
-                            <SiBlender className='size-8 lg:mr-10 '/><span>Blender</span><DotIcon/>
+                            <SiBlender className='size-8 lg:mr-10 '/>Blender<DotIcon/>
                         </div>
                     </h2>
                 </div>
