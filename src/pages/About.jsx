@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import Navbar from '../components/Navbar'
-import { useNavigate } from 'react-router'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import mainprofilepic from '../assets/mainprofilepic.jpg'
