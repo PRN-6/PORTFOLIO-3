@@ -32,11 +32,11 @@ const Navbar = () => {
                             Projects
                         </h3>
                     </Link>
-                    <Link to={"/resume"}>
+                    {/* <Link to={"/resume"}>
                         <h3>
                             Resume
                         </h3>
-                    </Link>
+                    </Link> */}
                     {/* <div className='btn btn-primary'>
                         <FaSun size={20} className="text-white-300" />
                     </div> */}
