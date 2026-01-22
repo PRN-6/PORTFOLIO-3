@@ -5,7 +5,6 @@ A modern, interactive portfolio website built with React, featuring responsive d
 ## 🚀 Features
 
 ### Core Features
-- **3D Visual Effects**: Powered by Three.js and React Three Fiber for immersive 3D graphics
 - **Responsive Design**: Fully responsive layout that works seamlessly on all devices
 - **Interactive Navigation**: Smooth hamburger menu with mobile support
 - **GSAP Animations**: Smooth, professional animations throughout the site
