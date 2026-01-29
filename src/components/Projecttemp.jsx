@@ -42,12 +42,7 @@ const Projecttemp = () => {
           </div>
           <div className="w-full sm:w-1/2 h-100 rounded-2xl  flex items-center justify-center">
               <div className="w-full h-full rounded-2xl bg-gray-900">
-                  <a href='' >
-                      <img 
-                    src=""
-                    alt="" 
-                    className=" object-cover hover:blur-xs"
-                    /></a>
+                  {/* Add project image here when available */}
                     <div>
                       <h1 className="font-bold p-3">
                           Updating....

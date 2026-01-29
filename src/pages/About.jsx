@@ -3,9 +3,10 @@ import Navbar from '../components/Navbar'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import mainprofilepic from '../assets/mainprofilepic.jpg'
-import { FaCode, FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
-import { SiBlender, SiC,
-     SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiMysql, SiPostman, SiPython, SiRust, SiTailwindcss, SiVscodium } from 'react-icons/si'
+import { FaGithub, FaNode, FaReact } from 'react-icons/fa'
+import { 
+     SiCss3, SiExpress, SiHtml5, SiJavascript, SiMongodb,  SiPostman, SiRust, SiTailwindcss 
+    } from 'react-icons/si'
 const About = () => {
   const aboutMe = useRef(null)
   
@@ -47,9 +48,7 @@ const About = () => {
             <p className='text-lg md:text-xl text-left'>
               I love clean code, modern tools, and always learning new things
             </p>
-          </div>
-
-          
+          </div>  
             {/* TECHONLOGY & TOOLS I USE */}
           <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
           <div className="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-5 mt-6 gap-12 p-5 text-gray-400">
@@ -66,8 +65,6 @@ const About = () => {
               <div><FaGithub className="w-8 h-8"/>Github</div>  
             
           </div>          
-
-
         </div>
       </div>
     </div>

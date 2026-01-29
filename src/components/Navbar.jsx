@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import { Link } from 'react-router'
-import { FaSun, FaMoon } from 'react-icons/fa';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 

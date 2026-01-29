@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 import profileImage from '../assets/profilephoto.jpg'
-import { FaCode, FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
 import { SiBlender, SiC,
      SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiMysql, SiPostman, SiPython, SiRust, SiTailwindcss, SiVscodium } from 'react-icons/si'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -9,20 +9,10 @@ import { DotIcon } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Projecttemp from '../components/Projecttemp'
+import Fun from '../components/Fun'
 
 const Home = () => {
-    const [count, setCount] = useState(() => {
-        // Load the saved count from localStorage, or default to 0 if not found
-        const savedCount = localStorage.getItem('clickCount');
-        return savedCount ? parseInt(savedCount, 10) : 0;
-    });
-    
     const imageRef = useRef(null)
-    
-    // Update localStorage whenever count changes
-    React.useEffect(() => {
-        localStorage.setItem('clickCount', count.toString());
-    }, [count]);
     const heroTitleRef = useRef(null)
     const heroInfoRef = useRef(null)
     const heroStackRef = useRef(null)
@@ -167,21 +157,7 @@ const Home = () => {
                             
                     </div>
                         <h1 className="mt-6 text-2xl">Fun</h1>
-                        <div className="p-4">
-                            <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg max-w-md mx-auto text-center">
-                                <p className="text-4xl font-mono mb-6">{count}</p>
-                                <button 
-                                    onClick={() => setCount(count + 1)}
-                                    className="bg-gray-900 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-2xl 
-                                            transition duration-300 transform hover:scale-105 active:scale-95"
-                                >
-                                    Click Me!
-                                </button>
-                                <p className="text-sm text-gray-400 mt-3">
-                                    Total clicks: {count}
-                                </p>
-                            </div>
-                        </div>      
+                        <Fun/>
                    
                 </div>
 
