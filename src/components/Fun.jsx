@@ -19,6 +19,12 @@ const Fun = () => {
             <div className='bg-gray-900 w-1/2 flex items-center justify-center p-8 rounded-3xl'>
                 <p>Updating...</p>
             </div>
+            <div className='bg-gray-900 w-1/2 flex items-center justify-center p-8 rounded-3xl'>
+                <p>Updating...</p>
+            </div>
+            <div className='bg-gray-900 w-1/2 flex items-center justify-center p-8 rounded-3xl'>
+                <p>Updating...</p>
+            </div>
         </div>     
     )
 }
