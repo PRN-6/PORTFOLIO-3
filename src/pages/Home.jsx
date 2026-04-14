@@ -156,8 +156,8 @@ const Home = () => {
                             <div><FaGithub className="w-8 h-8"/>Github</div> 
                             
                     </div>
-                        <h1 className="mt-6 text-2xl">Fun</h1>
-                        <Fun/>
+                        {/* <h1 className="mt-6 text-2xl">Fun</h1>
+                        <Fun/> */}
                    
                 </div>
 

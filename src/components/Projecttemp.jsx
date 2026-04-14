@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import p1 from '../assets/p1.png'
+import p2 from '../assets/p2.png'
 import { FaGithub } from 'react-icons/fa'
 
 const Projecttemp = () => {
@@ -37,23 +38,33 @@ const Projecttemp = () => {
                         </a> 
                       </div>
                     </div>
-
               </div>
           </div>
           <div className="w-full sm:w-1/2 h-100 rounded-2xl  flex items-center justify-center">
               <div className="w-full h-full rounded-2xl bg-gray-900">
                   {/* Add project image here when available */}
+                     <a href='' >
+                      <img 
+                    src={p2}
+                    alt="" 
+                    className=" object-cover hover:blur-xs"
+                    /></a>
                     <div>
                       <h1 className="font-bold p-3">
-                          Updating....
+                          3D Scroll Website
                       </h1>   
                       <p className='p-3 text-gray-400'>
-                          Updating....
+                          A modern 3D scroll website built with React, Tailwind CSS, GSAP and Three.js.
                       </p>
+                      <div className="p-3 w-11">
+                        <a href="https://github.com/PRN-6/college-fest-website">
+                            <FaGithub className="text-2xl hover:text-blue-400" />
+                        </a> 
+                      </div>
                     </div>
-
               </div>
           </div>
+          
       </div>
 
     </div>
