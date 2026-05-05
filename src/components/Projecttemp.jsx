@@ -43,7 +43,7 @@ const Projecttemp = () => {
           <div className="w-full sm:w-1/2 h-100 rounded-2xl  flex items-center justify-center">
               <div className="w-full h-full rounded-2xl bg-gray-900">
                   {/* Add project image here when available */}
-                     <a href='' >
+                     <a href='https://3-d-website-blond.vercel.app/' target='_blank' rel='noopener noreferrer'>
                       <img 
                     src={p2}
                     alt="" 
