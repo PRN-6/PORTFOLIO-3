@@ -48,6 +48,11 @@ const About = () => {
             <p className='text-lg md:text-xl text-left'>
               I love clean code, modern tools, and always learning new things
             </p>
+            <div className="pt-2">
+              <a href="https://buymeachai.ezee.li/prinson" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+                <img src="https://buymeachai.ezee.li/assets/images/buymeachai-button.png" alt="Buy Me A Chai" width="150" />
+              </a>
+            </div>
           </div>  
             {/* TECHONLOGY & TOOLS I USE */}
           <h1 className="mt-6 text-2xl">Technologies & Tools</h1>

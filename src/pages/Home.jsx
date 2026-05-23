@@ -86,6 +86,10 @@ const Home = () => {
                                 <SiGmail className="w-6 h-6" />
                                 <span className="hidden lg:inline">prinsonroyal1@gmail.com</span>
                             </a>
+
+                            <a href="https://buymeachai.ezee.li/prinson" target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-80 transition-opacity">
+                                <img src="https://buymeachai.ezee.li/assets/images/buymeachai-button.png" alt="Buy Me A Chai" width="150" />
+                            </a>
                         </div>
 
                     </div>
@@ -138,7 +142,7 @@ const Home = () => {
 
                     {/* PROJECT DISPLAY SECTION */}
                     <h1 className="mb-6 text-2xl">Projects</h1>
-                    <Projecttemp/>
+                    <Projecttemp limit={2} />
 
                     {/* TECHONLOGY & TOOLS I USE */}
                     <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
