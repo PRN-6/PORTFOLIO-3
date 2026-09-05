@@ -1,9 +1,37 @@
 @import "tailwindcss";
 
 
-body{
-    background-color: black;
-    color:white;
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Space Mono', monospace;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.font-rye {
+    font-family: 'Rye', serif;
+}
+
+.font-handwriting {
+    font-family: 'Architects Daughter', 'Patrick Hand', cursive;
+}
+
+.font-pixel {
+    font-family: 'Pixelify Sans', monospace;
+}
+
+.font-silkscreen {
+    font-family: 'Silkscreen', monospace;
+}
+
+.font-vt323 {
+    font-family: 'VT323', monospace;
+}
+
+.font-mono-code {
+    font-family: 'Space Mono', monospace;
 }
 
 /* Custom class to hide scrollbar */

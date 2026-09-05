@@ -1,27 +1,25 @@
-import React, { useRef } from 'react'
-import Navbar from '../components/Navbar'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import Projecttemp from '../components/Projecttemp'
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Projecttemp from '../components/Projecttemp';
 
 const Projects = () => {
-  const projectRef = useRef(null)
+    return (
+        <div className="relative min-h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-6 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-x-hidden">
+            {/* Top Navigation */}
+            <Navbar />
 
-  useGSAP(() => {
-    gsap.from(projectRef.current , {
-      x: 50, opacity: 0, duration:1, ease: 'power4.out'
-    })
-  }, [])
+            {/* Main Projects Section */}
+            <main className="w-full flex-1 flex flex-col justify-start items-center py-4 sm:py-8">
+                <Projecttemp />
+            </main>
 
-  return (
-    <div>
-      <Navbar/> 
-      <div ref={projectRef} className="h-[calc(100vh-64px)] overflow-y-auto px-4 md:px-20 lg:px-40 xl:px-60 hide-scrollbar">
-        <Projecttemp/>
-      </div>    
+            {/* Bottom spacer / minimal status */}
+            <footer className="w-full flex justify-between items-center text-xs font-mono-code text-zinc-500 pt-6">
+                <span>// projects</span>
+                <span className="text-zinc-600">portfolio v2</span>
+            </footer>
+        </div>
+    );
+};
 
-    </div>
-  )
-}
-
-export default Projects
+export default Projects;

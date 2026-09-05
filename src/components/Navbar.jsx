@@ -1,63 +1,39 @@
-import React, { useRef, useState } from 'react'
-import { Link } from 'react-router'
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React from 'react';
+import { Link, useLocation } from 'react-router';
 
 const Navbar = () => {
-    const navLink = useRef(null)
-    const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    const currentPath = location.pathname;
 
-    useGSAP(() => {
-        gsap.from(navLink.current, {
-            y:50, opacity:0, duration:1, ease:'circ.in'
-        })
-    })
-
-    const toggleMenu = () => setIsOpen(!isOpen);
-
-  return (
-    <header className='relative w-full z-50'>
-        <div className='mx-auto h-16 p-4 bg-black'>
-            <div className='flex items-center justify-end'>
-                {/* Hamburger Icon for Mobile */}
-                <div className='sm:hidden flex w-full justify-end'>
-                    <button onClick={toggleMenu} className='text-gray-400 hover:text-white focus:outline-none'>
-                        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                    </button>
-                </div>
-
-                {/* Desktop Links */}
-                <div ref={navLink} className='hidden sm:flex justify-end gap-6 px-6 text-sm text-gray-400'>
-                    <Link to={"/"} className='hover:text-white transition-colors'>
-                        <h3>Home</h3>
-                    </Link>
-                    <Link to={"/about"} className='hover:text-white transition-colors'>
-                        <h3>About</h3>
-                    </Link>
-                    <Link to={"/projects"} className='hover:text-white transition-colors'>
-                        <h3>Projects</h3>
-                    </Link>
-                </div>
-            </div>
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        {isOpen && (
-            <div className='sm:hidden absolute top-16 left-0 w-full bg-gray-900 border-t border-gray-800 flex flex-col items-center py-6 gap-6 shadow-2xl z-50 text-gray-400'>
-                <Link to={"/"} onClick={() => setIsOpen(false)} className='text-lg hover:text-white transition-colors'>
-                    Home
+    return (
+        <header className="w-full flex justify-center items-center pt-2 pb-4 sm:pt-3 sm:pb-4 z-50 select-none">
+            <nav className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-mono-code text-zinc-400">
+                <Link
+                    to="/"
+                    className={`transition-colors duration-200 ${currentPath === '/' ? 'text-white font-medium' : 'text-zinc-400 hover:text-white'
+                        }`}
+                >
+                    home
                 </Link>
-                <Link to={"/about"} onClick={() => setIsOpen(false)} className='text-lg hover:text-white transition-colors'>
-                    About
+                <span className="text-zinc-600 text-xs">•</span>
+                <Link
+                    to="/projects"
+                    className={`transition-colors duration-200 ${currentPath === '/projects' ? 'text-white font-medium' : 'text-zinc-400 hover:text-white'
+                        }`}
+                >
+                    projects
                 </Link>
-                <Link to={"/projects"} onClick={() => setIsOpen(false)} className='text-lg hover:text-white transition-colors'>
-                    Projects
+                <span className="text-zinc-600 text-xs">•</span>
+                <Link
+                    to="/about"
+                    className={`transition-colors duration-200 ${currentPath === '/about' ? 'text-white font-medium' : 'text-zinc-400 hover:text-white'
+                        }`}
+                >
+                    about me
                 </Link>
-            </div>
-        )}
-    </header>
-    )
-}
+            </nav>
+        </header>
+    );
+};
 
-export default Navbar
+export default Navbar;

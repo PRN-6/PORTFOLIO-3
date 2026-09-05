@@ -1,173 +1,170 @@
-import React, { useRef, useState } from 'react'
-import Navbar from '../components/Navbar'
-import profileImage from '../assets/profilephoto.jpg'
-import { FaGithub, FaLinkedin, FaNode, FaReact } from 'react-icons/fa'
-import { SiBlender, SiC,
-     SiCss3, SiExpress, SiGmail, SiHtml5, SiJavascript, SiMongodb, SiMysql, SiPostman, SiPython, SiRust, SiTailwindcss, SiVscodium } from 'react-icons/si'
-import { FaXTwitter } from 'react-icons/fa6'
-import { DotIcon } from 'lucide-react'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import Projecttemp from '../components/Projecttemp'
-import Fun from '../components/Fun'
+﻿import React, { useState, useEffect, useRef } from 'react';
+import Navbar from '../components/Navbar';
+import { Github, Linkedin, Mail, Sparkles, Music, Music2 } from 'lucide-react';
+import homeAudio from '../assets/audio/homeaudio.mp3';
+
+const FONT_STYLES = [
+    { id: 'rye',         className: 'font-rye tracking-wide' },
+    { id: 'handwriting', className: 'font-handwriting tracking-wider font-normal' },
+    { id: 'pixel',       className: 'font-pixel tracking-normal font-normal' },
+    { id: 'silkscreen',  className: 'font-silkscreen tracking-wider font-normal' },
+    { id: 'vt323',       className: 'font-vt323 tracking-widest font-normal' },
+];
+
+const NAMESPACE = 'prinson-portfolio-2026-v2';
 
 const Home = () => {
-    const imageRef = useRef(null)
-    const heroTitleRef = useRef(null)
-    const heroInfoRef = useRef(null)
-    const heroStackRef = useRef(null)
-    const linkRef = useRef(null)
-    const projectRef = useRef(null)
+    const [currentFontIndex, setCurrentFontIndex] = useState(0);
+    const [visitorCount, setVisitorCount] = useState(() => {
+        const cached = localStorage.getItem('prinson_cached_visitors');
+        return cached ? parseInt(cached, 10) : 1;
+    });
+    const [clickCount, setClickCount] = useState(() => {
+        const cached = localStorage.getItem('prinson_cached_clicks');
+        return cached ? parseInt(cached, 10) : 1;
+    });
+    const [isBouncing, setIsBouncing] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef(null);
 
-    useGSAP(() => {
-        gsap.to(imageRef.current, { rotate: 360 })
+    // Cycle through fonts every 150ms
+    useEffect(() => {
+        const interval = setInterval(
+            () => setCurrentFontIndex((i) => (i + 1) % FONT_STYLES.length),
+            150
+        );
+        return () => clearInterval(interval);
+    }, []);
 
-        gsap.from(heroTitleRef.current, {
-            y: 50, opacity: 0, duration: 1, ease: 'power2.out'
-        })
+    // Fetch global visitor & click counts on mount
+    useEffect(() => {
+        const load = async () => {
+            try {
+                const visited = sessionStorage.getItem('prinson_session_visit');
+                const url = visited
+                    ? `https://abacus.jasoncameron.dev/get/${NAMESPACE}/visits`
+                    : `https://abacus.jasoncameron.dev/hit/${NAMESPACE}/visits`;
+                const res = await fetch(url);
+                if (res.ok) {
+                    const { value } = await res.json();
+                    if (typeof value === 'number') {
+                        setVisitorCount(value);
+                        localStorage.setItem('prinson_cached_visitors', String(value));
+                        if (!visited) sessionStorage.setItem('prinson_session_visit', 'true');
+                    }
+                }
+            } catch { /* use cached */ }
 
-        gsap.from(heroInfoRef.current, {
-            y: 50, opacity: 0, duration: 1, ease: 'back.in'
-        })
+            try {
+                const res = await fetch(`https://abacus.jasoncameron.dev/get/${NAMESPACE}/clicks`);
+                if (res.ok) {
+                    const { value } = await res.json();
+                    if (typeof value === 'number') {
+                        setClickCount(value);
+                        localStorage.setItem('prinson_cached_clicks', String(value));
+                    }
+                }
+            } catch { /* use cached */ }
+        };
+        load();
+    }, []);
 
-        gsap.from(heroStackRef.current, {
-            z: 50, opacity: 0, duration: 1, ease: 'sine.inOut'
-        })
+    // Sync audio element with isPlaying state
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+        isPlaying
+            ? audio.play().catch(() => setIsPlaying(false))
+            : audio.pause();
+    }, [isPlaying]);
 
-        gsap.from(linkRef.current, {
-            x: 100, opacity: 0, duration: 1, ease: 'circ.inOut'
-        })
+    const handleGlobalClick = async () => {
+        setIsBouncing(true);
+        setTimeout(() => setIsBouncing(false), 150);
+        setClickCount((n) => n + 1); // optimistic update
+        try {
+            const res = await fetch(`https://abacus.jasoncameron.dev/hit/${NAMESPACE}/clicks`);
+            if (res.ok) {
+                const { value } = await res.json();
+                if (typeof value === 'number') {
+                    setClickCount(value);
+                    localStorage.setItem('prinson_cached_clicks', String(value));
+                }
+            }
+        } catch { /* keep optimistic */ }
+    };
 
-        gsap.from(projectRef.current, {
-            x: 50, opacity: 0, duration: 1, ease: 'power4.out'
-        })
-    }, [])
+    const activeFont = FONT_STYLES[currentFontIndex];
 
     return (
-        <div>
+        <div className="relative w-screen h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-6 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-hidden select-none">
+            <audio ref={audioRef} src={homeAudio} loop preload="auto" />
+
             <Navbar />
 
-            
-
-            <div className="flex flex-col lg:flex-row min-h-screen">
-
-                {/* LEFT SECTION */}
-                <div className="w-full pt-18 lg:w-1/2 p-6 lg:p-12 lg:sticky top-0">
-
-                    {/* Image + Icons */}
-                    <div className="flex flex-col items-center lg:flex-row lg:items-start gap-6">
-
-                        {/* Profile Image */}
-                        <img
-                            ref={imageRef}
-                            src={profileImage}
-                            alt="profile"
-                            className="w-40 h-40 sm:w-60 sm:h-60 rounded-full object-cover shadow-lg"
-                        />
-
-                        {/* Social Links */}
-                        <div ref={linkRef} className="flex justify-center gap-6 lg:flex-col lg:gap-6 lg:ml-10 mt-10 text-gray-300">
-                            <a href="https://github.com/PRN-6" className="flex items-center gap-2 hover:text-blue-300">
-                                <FaGithub className="w-6 h-6" />
-                                <span className="hidden lg:inline">Github</span>
-                            </a>
-
-                            <a href="https://www.linkedin.com/in/prinson-nazareth/" className="flex items-center gap-2 hover:text-blue-300">
-                                <FaLinkedin className="w-6 h-6" />
-                                <span className="hidden lg:inline">LinkedIn</span>
-                            </a>
-
-                            <a href="https://x.com/r_prinson66328" className="flex items-center gap-2 hover:text-blue-300">
-                                <FaXTwitter className="w-6 h-6" />
-                                <span className="hidden lg:inline">Twitter</span>
-                            </a>
-
-                            <a href="mailto:prinsonroyal1@gmail.com" className="flex items-center gap-2 hover:text-blue-300">
-                                <SiGmail className="w-6 h-6" />
-                                <span className="hidden lg:inline">prinsonroyal1@gmail.com</span>
-                            </a>
-
-                            <a href="https://buymeachai.ezee.li/prinson" target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-80 transition-opacity">
-                                <img src="https://buymeachai.ezee.li/assets/images/buymeachai-button.png" alt="Buy Me A Chai" width="150" />
-                            </a>
-                        </div>
-
-                    </div>
-
-                    {/* NAME */}
+            {/* Centre: cycling name + tagline */}
+            <main className="w-full flex flex-col items-center justify-center text-center my-auto z-10">
+                <div
+                    onClick={() => setCurrentFontIndex((i) => (i + 1) % FONT_STYLES.length)}
+                    title="Click to cycle font"
+                    className="min-h-[120px] sm:min-h-[160px] md:min-h-[200px] flex items-center justify-center cursor-pointer"
+                >
                     <h1
-                        ref={heroTitleRef}
-                        className="text-3xl sm:text-4xl lg:text-5xl font-bold pt-6 pb-4 text-center lg:text-left"
+                        key={currentFontIndex}
+                        className={`text-6xl sm:text-8xl md:text-9xl text-white lowercase transition-all duration-100 ${activeFont.className}`}
                     >
-                        Prinson Royal Nazareth
+                        prinson
                     </h1>
+                </div>
+                <p className="font-mono-code text-xs sm:text-sm text-zinc-400 mt-2 sm:mt-4 tracking-wider">
+                    # Just a Developer
+                </p>
+            </main>
 
-                    {/* INFO */}
-                    <div
-                        ref={heroInfoRef}
-                        className= "p-4 rounded-md text-center lg:text-left"
+            {/* Footer: social links, audio toggle, counters */}
+            <footer className="w-full flex flex-wrap justify-between items-center gap-y-3 z-10">
+                <div className="flex items-center gap-3 sm:gap-5 text-zinc-400">
+                    <a href="https://github.com/PRN-6" target="_blank" rel="noopener noreferrer"
+                        className="hover:text-white transition-colors p-1" aria-label="GitHub">
+                        <Github size={18} />
+                    </a>
+                    <a href="https://www.linkedin.com/in/prinson-nazareth/" target="_blank" rel="noopener noreferrer"
+                        className="hover:text-white transition-colors p-1" aria-label="LinkedIn">
+                        <Linkedin size={18} />
+                    </a>
+                    <a href="mailto:prinsonroyal1@gmail.com"
+                        className="hover:text-white transition-colors p-1" aria-label="Email">
+                        <Mail size={18} />
+                    </a>
+                    <button
+                        onClick={() => setIsPlaying((p) => !p)}
+                        aria-label={isPlaying ? 'Pause music' : 'Play music'}
+                        title={isPlaying ? 'Pause ambient music' : 'Play ambient music'}
+                        className={`p-1 transition-colors cursor-pointer ${isPlaying ? 'text-white' : 'text-zinc-600 hover:text-zinc-300'}`}
                     >
-                       
-                        <h2 ref={heroInfoRef} ><span className='text-gray-300'>I'm a self-taught developer with a strong passion for building clean, user-friendly applications.</span><strong> I love learning new technologies and constantly improving my skills.</strong>
-                        </h2>
-                    </div>
-
-                    {/* STACK */}
-                    <h2 className="pt-6 text-center lg:text-left ">
-                        <span className=' text-gray-300'>Leveling up in:</span>
-                        <div
-                            ref={heroStackRef}
-                            className="flex flex-wrap justify-center lg:justify-start items-center gap-5 pt-4"
-                        >
-                            <FaReact className="size-8" /> React <DotIcon />
-                            <SiExpress className="size-8" /> Express <DotIcon />
-                            <FaNode className="size-8" /> Node <DotIcon />
-                            <SiMongodb className="size-8" /> Mongodb <DotIcon />
-                            <SiRust className="size-8" /> Rust <DotIcon/>
-                            <SiPython className="size-8" /> Python <DotIcon/>
-                            <SiMysql className="size-8" /> MySQL <DotIcon/>
-                            <SiC className="size-8 "/> C <DotIcon/>
-                            <SiBlender className='size-8 lg:mr-10 '/>Blender<DotIcon/>
-                        </div>
-                    </h2>
+                        {isPlaying ? <Music size={17} className="animate-pulse" /> : <Music2 size={17} />}
+                    </button>
                 </div>
 
-                {/* RIGHT SECTION — PROJECTS */}
-                <div className="w-full lg:w-1/2 p-6 lg:p-12 h-auto lg:h-screen lg:overflow-y-auto hide-scrollbar">
-
-                    {/* WORKING ON IT */}
-                    {/* <div>
-                        <h1 className="mb-6 text-2xl">Experience</h1>
-                    </div> */}
-
-                    {/* PROJECT DISPLAY SECTION */}
-                    <h1 className="mb-6 text-2xl">Projects</h1>
-                    <Projecttemp limit={2} />
-
-                    {/* TECHONLOGY & TOOLS I USE */}
-                    <h1 className="mt-6 text-2xl">Technologies & Tools</h1>
-                    <div className="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-5 mt-6 gap-12 p-5 text-gray-400">
-                            <div><SiJavascript className="w-8 h-8"/>Javascript</div>
-                            <div><SiExpress className="w-8 h-8"/>ExpressJS</div>
-                            <div><SiTailwindcss className="w-8 h-8"/>Tailwind CSS</div>
-                            <div><SiCss3 className="w-8 h-8"/>CSS</div>
-                            <div><SiHtml5 className="w-8 h-8"/>Html</div>
-                            <div><FaReact className="w-8 h-8" /> React </div>
-                            <div><FaNode className="w-8 h-8" />Node</div>  
-                            <div><SiMongodb className="w-8 h-8" />Mongodb </div> 
-                            <div><SiRust className="w-8 h-8" />Rust </div>
-                            <div><SiPostman className="w-8 h-8"/>Postman</div>
-                            <div><FaGithub className="w-8 h-8"/>Github</div> 
-                            
+                <div className="flex items-center gap-2 sm:gap-4 text-xs font-mono-code text-zinc-400">
+                    <div className="flex items-center gap-1" title="Total visitors">
+                        <span className="text-zinc-600">vis:</span>
+                        <span className="text-zinc-300 font-semibold">{visitorCount.toLocaleString()}</span>
                     </div>
-                        {/* <h1 className="mt-6 text-2xl">Fun</h1>
-                        <Fun/> */}
-                   
+                    <span className="text-zinc-700">•</span>
+                    <button
+                        onClick={handleGlobalClick}
+                        title="Click to bump the counter!"
+                        className={`group flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 border border-zinc-800 bg-zinc-950 hover:border-zinc-600 hover:bg-zinc-900 text-zinc-300 hover:text-white rounded transition-all cursor-pointer select-none active:scale-90 ${isBouncing ? 'scale-105 border-zinc-500 text-white' : ''}`}
+                    >
+                        <Sparkles size={10} className="text-zinc-500 group-hover:text-amber-400 transition-colors" />
+                        <span>clicks:</span>
+                        <span className="text-white font-semibold">{clickCount.toLocaleString()}</span>
+                    </button>
                 </div>
-
-            </div>
+            </footer>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
