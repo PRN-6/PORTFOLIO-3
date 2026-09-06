@@ -16,7 +16,8 @@ import {
     SiTailwindcss,
     SiGithub,
     SiLinkedin,
-    SiX
+    SiX,
+    SiLeetcode
 } from 'react-icons/si';
 import { ArrowUpRight, Code, Terminal, FileText, Download } from 'lucide-react';
 
@@ -100,6 +101,16 @@ const About = () => {
                                 className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
                             >
                                 <span>email</span>
+                                <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            </a>
+                            <a
+                                href="https://leetcode.com/u/YFOPWWiMMB/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
+                            >
+                                <SiLeetcode size={12} className="text-zinc-500 group-hover:text-[#FFA116] transition-colors" />
+                                <span>leetcode</span>
                                 <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                             <a
