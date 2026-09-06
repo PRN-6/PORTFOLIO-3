@@ -4,12 +4,12 @@ import Projecttemp from '../components/Projecttemp';
 
 const Projects = () => {
     return (
-        <div className="relative min-h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-6 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-x-hidden">
+        <div className="relative min-h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-4 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-x-hidden">
             {/* Top Navigation */}
             <Navbar />
 
             {/* Main Projects Section */}
-            <main className="w-full flex-1 flex flex-col justify-start items-center py-4 sm:py-8">
+            <main className="w-full flex-1 flex flex-col justify-center items-center my-auto py-6 sm:py-10 md:py-12">
                 <Projecttemp />
             </main>
 

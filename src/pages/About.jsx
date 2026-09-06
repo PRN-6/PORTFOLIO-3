@@ -1,21 +1,31 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import mainprofilepic from '../assets/mainprofilepic.jpg';
-import { FaGithub, FaNode, FaReact } from 'react-icons/fa';
+import { FaNode, FaReact, FaJava } from 'react-icons/fa';
 import {
     SiCss3,
     SiExpress,
+    SiFastapi,
     SiHtml5,
     SiJavascript,
+    SiTypescript,
     SiMongodb,
     SiPostman,
+    SiPython,
     SiRust,
-    SiTailwindcss
+    SiTailwindcss,
+    SiGithub,
+    SiLinkedin,
+    SiX
 } from 'react-icons/si';
-import { ArrowUpRight, Code, Terminal } from 'lucide-react';
+import { ArrowUpRight, Code, Terminal, FileText, Download } from 'lucide-react';
 
 const techStack = [
+    { name: 'Python', icon: SiPython },
+    { name: 'FastAPI', icon: SiFastapi },
     { name: 'JavaScript', icon: SiJavascript },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'Java', icon: FaJava },
     { name: 'React', icon: FaReact },
     { name: 'Node.js', icon: FaNode },
     { name: 'Express.js', icon: SiExpress },
@@ -25,12 +35,12 @@ const techStack = [
     { name: 'HTML5', icon: SiHtml5 },
     { name: 'CSS3', icon: SiCss3 },
     { name: 'Postman', icon: SiPostman },
-    { name: 'GitHub', icon: FaGithub }
+    { name: 'GitHub', icon: SiGithub }
 ];
 
 const About = () => {
     return (
-        <div className="relative min-h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-6 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-x-hidden select-none">
+        <div className="relative min-h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-4 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-x-hidden select-none">
             {/* Top Navigation */}
             <Navbar />
 
@@ -69,26 +79,38 @@ const About = () => {
                                 href="https://github.com/PRN-6"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+                                className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
                             >
+                                <SiGithub size={12} className="text-zinc-500 group-hover:text-white transition-colors" />
                                 <span>github</span>
-                                <ArrowUpRight size={13} />
+                                <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/prinson-nazareth/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
+                            >
+                                <SiLinkedin size={11} className="text-zinc-500 group-hover:text-white transition-colors" />
+                                <span>linkedin</span>
+                                <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                             <a
                                 href="mailto:prinsonroyal1@gmail.com"
-                                className="inline-flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+                                className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
                             >
                                 <span>email</span>
-                                <ArrowUpRight size={13} />
+                                <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                             <a
                                 href="https://x.com/r_prinson66328"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+                                className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
                             >
-                                <span>twitter</span>
-                                <ArrowUpRight size={13} />
+                                <SiX size={11} className="text-zinc-500 group-hover:text-white transition-colors" />
+                                <span>x</span>
+                                <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                         </div>
                     </div>
@@ -109,13 +131,23 @@ const About = () => {
                                 I love clean code, elegant typography, modern developer tooling, and self-hosted software where you own your data. Always learning and exploring new technologies.
                             </p>
 
-                            {/* Buy Me A Chai button */}
-                            <div className="pt-2">
+                            {/* Actions: Download Resume & Buy Me A Chai */}
+                            <div className="pt-2 flex flex-wrap items-center gap-3">
+                                <a
+                                    href="/resume.pdf"
+                                    download="Prinson_Nazareth_Resume.pdf"
+                                    className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-700 bg-zinc-900 hover:border-zinc-500 hover:bg-zinc-800 text-white font-mono-code text-xs transition-all duration-200 group cursor-pointer"
+                                >
+                                    <FileText size={13} className="text-zinc-400 group-hover:text-white transition-colors" />
+                                    <span>resume.pdf</span>
+                                    <Download size={13} className="text-zinc-400 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
+                                </a>
+
                                 <a
                                     href="https://buymeachai.ezee.li/prinson"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-800 bg-[#121212] hover:border-zinc-700 hover:bg-zinc-900 text-zinc-300 hover:text-white font-mono-code text-xs transition-all duration-200"
+                                    className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-800 bg-[#121212] hover:border-zinc-700 hover:bg-zinc-900 text-zinc-400 hover:text-white font-mono-code text-xs transition-all duration-200"
                                 >
                                     <span>☕ buy me a chai</span>
                                     <ArrowUpRight size={13} />

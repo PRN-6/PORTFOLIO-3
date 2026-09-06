@@ -30,6 +30,42 @@ body {
     font-family: 'VT323', monospace;
 }
 
+.font-glitch {
+    font-family: 'Rubik Glitch', system-ui;
+}
+
+.font-monoton {
+    font-family: 'Monoton', cursive;
+}
+
+.font-press-start {
+    font-family: 'Press Start 2P', monospace;
+}
+
+.font-gothic {
+    font-family: 'UnifrakturMaguntia', cursive;
+}
+
+.font-major-mono {
+    font-family: 'Major Mono Display', monospace;
+}
+
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.font-bungee {
+    font-family: 'Bungee', cursive;
+}
+
+.font-cinzel {
+    font-family: 'Cinzel Decorative', serif;
+}
+
+.font-dotgothic {
+    font-family: 'DotGothic16', monospace;
+}
+
 .font-mono-code {
     font-family: 'Space Mono', monospace;
 }

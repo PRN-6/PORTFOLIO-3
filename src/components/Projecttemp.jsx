@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Volume2, VolumeX } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { SiGithub } from 'react-icons/si';
+import p1 from '../assets/p1.png';
+import p2 from '../assets/p2.png';
+import p3 from '../assets/p3.png';
 
 const projectsData = [
     {
@@ -12,21 +16,7 @@ const projectsData = [
             'An ultra-low latency, 100% private, on-device AI voice assistant and desktop automation framework engineered for local semantic routing and quantized speech recognition.',
         github: 'https://github.com/PRN-6/NOVA',
         demo: null,
-        type: 'nova-logo',
-        cliOutput: [
-            '$ python app.py --nova-core',
-            '● [EDGE-AI] Local Transformer ASR initialized',
-            '> Privacy: 100% on-device, 0 telemetry',
-            '> Latency: 42ms (Dual-lane semantic routing)',
-            '> HUD: Listening on local audio stream'
-        ],
-        ascii: [
-            '  ███    ██     ',
-            '  ████   ██     ',
-            '  ██ ██  ██     ',
-            '  ██  ██ ██     ',
-            '  ██   ████     '
-        ]
+        image: null // No image yet: left blank as requested
     },
     {
         id: 'astrix',
@@ -38,21 +28,7 @@ const projectsData = [
             'A comprehensive event platform designed to handle registrations, scheduling, and live scoreboards with dynamic transitions and real-time coordinator updates.',
         github: 'https://github.com/PRN-6/Astrix',
         demo: 'https://astrix2k26.vercel.app/',
-        type: 'a-logo',
-        cliOutput: [
-            '$ astrix --event-sync',
-            '● [READY] Event queue synced',
-            '> Attendees: 1,480 registered',
-            '> Latency: 14ms (Edge CDN)',
-            '> Active Stages: Main Auditorium, Lab 4'
-        ],
-        ascii: [
-            '     ████       ',
-            '    ██  ██      ',
-            '   ████████     ',
-            '  ██      ██    ',
-            ' ██        ██   '
-        ]
+        image: p3
     },
     {
         id: 'portfolio',
@@ -63,22 +39,8 @@ const projectsData = [
         description:
             'A distraction-free, dark-themed personal website focused on data ownership, privacy, kinetic typography, and raw terminal aesthetics.',
         github: 'https://github.com/PRN-6/PORTFOLIO-3',
-        demo: '/',
-        type: 'p-logo',
-        cliOutput: [
-            '$ pandadev --whoami',
-            '● [SOVEREIGN] All data hosted locally',
-            '> Aesthetic: Pitch Black (#000000)',
-            '> Font Engine: Kinetic shuffle active',
-            '> Status: Building future-proof software'
-        ],
-        ascii: [
-            '  ████████      ',
-            '  ██     ██     ',
-            '  ████████      ',
-            '  ██            ',
-            '  ██            '
-        ]
+        demo: 'https://prinson.is-a.dev/',
+        image: p1
     },
     {
         id: '3d-website',
@@ -90,49 +52,13 @@ const projectsData = [
             'A spatial web application blending React, Tailwind CSS, GSAP, and Three.js for cinematic 3D camera transitions and real-time WebGL rendering.',
         github: 'https://github.com/PRN-6/3D-website',
         demo: 'https://3-d-website-blond.vercel.app/',
-        type: '3d-logo',
-        cliOutput: [
-            '$ three --render-stats',
-            '● [GPU] WebGL 2.0 Canvas initialized',
-            '> Framerate: 60 FPS (Stable)',
-            '> Geometries: 3,420 polygons',
-            '> Shader Passes: Bloom, Vignette'
-        ],
-        ascii: [
-            '    ┌─────────┐ ',
-            '   ╱         ╱│ ',
-            '  ┌─────────┐ │ ',
-            '  │  3 D    │ │ ',
-            '  │         │ ╱ ',
-            '  └─────────┘   '
-        ]
+        image: p2
     }
 ];
-
-const playMechanicalClick = () => {
-    try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.035);
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.035);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.035);
-    } catch {
-        // audio context inactive
-    }
-};
 
 const Projecttemp = () => {
     const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
     const [showAll, setShowAll] = useState(false);
-    const [centerMode, setCenterMode] = useState('visual'); // 'visual' | 'cli' | 'ascii'
-    const [soundEnabled, setSoundEnabled] = useState(false);
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
     const cardRef = useRef(null);
     const touchStartX = useRef(null);
@@ -140,7 +66,6 @@ const Projecttemp = () => {
     const project = projectsData[selectedProjectIndex];
 
     const handleSwitchProject = (newIndex) => {
-        if (soundEnabled) playMechanicalClick();
         setSelectedProjectIndex(newIndex);
     };
 
@@ -161,7 +86,7 @@ const Projecttemp = () => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedProjectIndex, soundEnabled]);
+    }, [selectedProjectIndex]);
 
     // Touch swipe navigation for mobile
     useEffect(() => {
@@ -189,7 +114,7 @@ const Projecttemp = () => {
             window.removeEventListener('touchstart', handleTouchStart);
             window.removeEventListener('touchend', handleTouchEnd);
         };
-    }, [selectedProjectIndex, soundEnabled]);
+    }, [selectedProjectIndex]);
 
     // 3D Tilt calculation
     const handleMouseMove = (e) => {
@@ -202,40 +127,6 @@ const Projecttemp = () => {
 
     const handleMouseLeave = () => {
         setTilt({ x: 0, y: 0 });
-    };
-
-    const renderLogo = (type) => {
-        switch (type) {
-            case 'nova-logo':
-                return (
-                    <svg viewBox="0 0 100 100" className="w-28 h-28 sm:w-36 sm:h-36 text-white fill-current drop-shadow-md">
-                        <polygon points="20,18 38,18 64,62 64,18 80,18 80,82 62,82 36,38 36,82 20,82" />
-                    </svg>
-                );
-            case 'a-logo':
-                return (
-                    <svg viewBox="0 0 100 100" className="w-28 h-28 sm:w-36 sm:h-36 text-white fill-current drop-shadow-md">
-                        <polygon points="50,16 66,16 84,84 68,84 60,54 40,54 32,84 16,84 34,16" />
-                        <polygon points="45,36 55,36 57,44 43,44" className="fill-[#181818]" />
-                    </svg>
-                );
-            case 'p-logo':
-                return (
-                    <svg viewBox="0 0 100 100" className="w-28 h-28 sm:w-36 sm:h-36 text-white fill-current drop-shadow-md">
-                        <path d="M 22 18 L 62 18 C 76 18 82 26 82 38 C 82 50 76 58 62 58 L 38 58 L 38 82 L 22 82 Z M 38 32 L 60 32 C 65 32 67 34 67 38 C 67 42 65 44 60 44 L 38 44 Z" />
-                    </svg>
-                );
-            case '3d-logo':
-            default:
-                return (
-                    <svg viewBox="0 0 100 100" className="w-28 h-28 sm:w-36 sm:h-36 text-white stroke-current fill-none stroke-[6]">
-                        <path d="M50 18 L82 36 L82 72 L50 90 L18 72 L18 36 Z" />
-                        <path d="M50 18 L50 90" />
-                        <path d="M50 54 L82 36" />
-                        <path d="M50 54 L18 36" />
-                    </svg>
-                );
-        }
     };
 
     const renderTriptych = (proj) => (
@@ -267,65 +158,38 @@ const Projecttemp = () => {
                 </div>
             </div>
 
-            {/* Middle Card: Interactive Canvas with 3D Tilt / CLI / ASCII */}
+            {/* Middle Card: Project Image Canvas with 3D Tilt */}
             <div
                 ref={proj.id === project.id ? cardRef : null}
                 onMouseMove={proj.id === project.id ? handleMouseMove : undefined}
                 onMouseLeave={proj.id === project.id ? handleMouseLeave : undefined}
-                className="border border-zinc-900 bg-black p-4 sm:p-6 md:p-8 flex items-center justify-center min-h-[260px] sm:min-h-[300px] md:min-h-[350px] relative overflow-hidden group cursor-pointer"
-                onClick={() => {
-                    const modes = ['visual', 'cli', 'ascii'];
-                    const next = modes[(modes.indexOf(centerMode) + 1) % modes.length];
-                    if (soundEnabled) playMechanicalClick();
-                    setCenterMode(next);
-                }}
-                title="Click to toggle visual / cli / ascii"
+                className="border border-zinc-900 bg-black p-4 sm:p-6 md:p-8 flex items-center justify-center min-h-[260px] sm:min-h-[300px] md:min-h-[350px] relative overflow-hidden group"
             >
                 <div
                     style={
                         proj.id === project.id
                             ? {
-                                  transform: `perspective(600px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
-                                  transition: tilt.x === 0 && tilt.y === 0 ? 'transform 0.4s ease' : 'none'
-                              }
+                                transform: `perspective(600px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
+                                transition: tilt.x === 0 && tilt.y === 0 ? 'transform 0.4s ease' : 'none'
+                            }
                             : undefined
                     }
-                    className="w-full max-w-[280px] sm:max-w-none mx-auto aspect-square bg-[#181818] border border-zinc-800/80 flex items-center justify-center p-4 sm:p-5 shadow-2xl relative"
+                    className={`w-full max-w-[280px] sm:max-w-none mx-auto aspect-square bg-[#141414] border border-zinc-800/80 flex items-center justify-center ${proj.image ? 'p-0' : 'p-4 sm:p-5'
+                        } shadow-2xl relative overflow-hidden`}
                 >
-                    {centerMode === 'visual' && (
-                        <div className="animate-fadeIn transition-transform duration-300 group-hover:scale-105">
-                            {renderLogo(proj.type)}
-                        </div>
-                    )}
-
-                    {centerMode === 'cli' && (
-                        <div className="w-full h-full flex flex-col justify-center font-mono-code text-[11px] leading-tight space-y-1.5 text-zinc-300 text-left overflow-hidden">
-                            {proj.cliOutput.map((line, idx) => (
-                                <p
-                                    key={idx}
-                                    className={
-                                        idx === 0
-                                            ? 'text-zinc-100 font-bold'
-                                            : line.includes('[EDGE-AI]') || line.includes('[READY]') || line.includes('[SOVEREIGN]') || line.includes('[GPU]')
-                                            ? 'text-emerald-400'
-                                            : 'text-zinc-400'
-                                    }
-                                >
-                                    {line}
-                                </p>
-                            ))}
-                        </div>
-                    )}
-
-                    {centerMode === 'ascii' && (
-                        <pre className="font-mono-code text-[11px] sm:text-xs leading-none text-zinc-200 select-none text-center">
-                            {proj.ascii.join('\n')}
-                        </pre>
-                    )}
-
-                    <span className="absolute bottom-2 right-2 text-[9px] font-mono-code text-zinc-600">
-                        mode: {centerMode}
-                    </span>
+                    <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.02] overflow-hidden">
+                        {proj.image ? (
+                            <img
+                                src={proj.image}
+                                alt={proj.title}
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-[#121212] flex items-center justify-center">
+                                {/* Left blank for projects without picture */}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -340,8 +204,9 @@ const Projecttemp = () => {
                         href={proj.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-zinc-300 hover:text-white transition-colors group"
+                        className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors group"
                     >
+                        <SiGithub size={13} className="text-zinc-400 group-hover:text-white transition-colors" />
                         <span>GitHub</span>
                         <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
@@ -364,8 +229,8 @@ const Projecttemp = () => {
 
     return (
         <div className="w-full flex flex-col items-center py-2 select-none">
-            {/* Top Toolbar: Audio feedback & interactive mode switcher */}
-            <div className="w-full max-w-5xl flex flex-wrap justify-between items-center gap-y-2 mb-3 font-mono-code text-[11px] text-zinc-500 px-1">
+            {/* Top Toolbar: Project Index & Title */}
+            <div className="w-full max-w-5xl flex justify-between items-center mb-3 font-mono-code text-[11px] text-zinc-500 px-1">
                 <div className="flex items-center gap-2">
                     <span className="text-zinc-600">PROJECT</span>
                     <span className="text-zinc-300 font-semibold">
@@ -373,58 +238,6 @@ const Projecttemp = () => {
                     </span>
                     <span className="text-zinc-600 hidden sm:inline">•</span>
                     <span className="text-zinc-400 hidden sm:inline">{project.title}</span>
-                </div>
-
-                <div className="flex items-center gap-4">
-                    <button
-                        onClick={() => {
-                            if (!soundEnabled) playMechanicalClick();
-                            setSoundEnabled(!soundEnabled);
-                        }}
-                        className={`flex items-center gap-1 transition-colors cursor-pointer ${
-                            soundEnabled ? 'text-zinc-200' : 'text-zinc-600 hover:text-zinc-400'
-                        }`}
-                        title={soundEnabled ? 'Mute keyboard sound' : 'Enable click sound FX'}
-                    >
-                        {soundEnabled ? <Volume2 size={13} /> : <VolumeX size={13} />}
-                        <span className="hidden sm:inline">{soundEnabled ? 'sound on' : 'sound off'}</span>
-                    </button>
-
-                    <div className="flex items-center gap-1 bg-zinc-950 border border-zinc-900 rounded p-0.5">
-                        <button
-                            onClick={() => {
-                                if (soundEnabled) playMechanicalClick();
-                                setCenterMode('visual');
-                            }}
-                            className={`px-2 py-0.5 rounded text-[10px] transition-colors cursor-pointer ${
-                                centerMode === 'visual' ? 'bg-zinc-800 text-white' : 'text-zinc-500 hover:text-zinc-300'
-                            }`}
-                        >
-                            visual
-                        </button>
-                        <button
-                            onClick={() => {
-                                if (soundEnabled) playMechanicalClick();
-                                setCenterMode('cli');
-                            }}
-                            className={`px-2 py-0.5 rounded text-[10px] transition-colors cursor-pointer ${
-                                centerMode === 'cli' ? 'bg-zinc-800 text-white' : 'text-zinc-500 hover:text-zinc-300'
-                            }`}
-                        >
-                            cli
-                        </button>
-                        <button
-                            onClick={() => {
-                                if (soundEnabled) playMechanicalClick();
-                                setCenterMode('ascii');
-                            }}
-                            className={`px-2 py-0.5 rounded text-[10px] transition-colors cursor-pointer ${
-                                centerMode === 'ascii' ? 'bg-zinc-800 text-white' : 'text-zinc-500 hover:text-zinc-300'
-                            }`}
-                        >
-                            ascii
-                        </button>
-                    </div>
                 </div>
             </div>
 
@@ -449,11 +262,10 @@ const Projecttemp = () => {
                                 key={p.id}
                                 onClick={() => handleSwitchProject(idx)}
                                 aria-label={`Select ${p.title}`}
-                                className={`font-mono-code text-xs px-3 sm:px-4 py-1.5 border transition-all cursor-pointer ${
-                                    selectedProjectIndex === idx
-                                        ? 'border-zinc-500 bg-zinc-900 text-white font-medium shadow-sm'
-                                        : 'border-zinc-900 bg-black text-zinc-500 hover:text-zinc-300 hover:border-zinc-800'
-                                }`}
+                                className={`font-mono-code text-xs px-3 sm:px-4 py-1.5 border transition-all cursor-pointer ${selectedProjectIndex === idx
+                                    ? 'border-zinc-500 bg-zinc-900 text-white font-medium shadow-sm'
+                                    : 'border-zinc-900 bg-black text-zinc-500 hover:text-zinc-300 hover:border-zinc-800'
+                                    }`}
                             >
                                 {p.title}
                             </button>
@@ -484,10 +296,11 @@ const Projecttemp = () => {
                     href="https://github.com/PRN-6?tab=repositories"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
                 >
+                    <SiGithub size={13} className="text-zinc-500 group-hover:text-white transition-colors" />
                     <span>all repos on GitHub</span>
-                    <ArrowUpRight size={13} />
+                    <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
             </div>
         </div>

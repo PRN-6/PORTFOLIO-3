@@ -1,13 +1,23 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
-import { Github, Linkedin, Mail, Sparkles, Music, Music2 } from 'lucide-react';
+import { Mail, Sparkles, Music, Music2 } from 'lucide-react';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 import homeAudio from '../assets/audio/homeaudio.mp3';
 
 const FONT_STYLES = [
     { id: 'rye',         className: 'font-rye tracking-wide' },
     { id: 'handwriting', className: 'font-handwriting tracking-wider font-normal' },
+    { id: 'glitch',      className: 'font-glitch tracking-normal font-normal' },
     { id: 'pixel',       className: 'font-pixel tracking-normal font-normal' },
+    { id: 'monoton',     className: 'font-monoton tracking-wider font-normal' },
+    { id: 'gothic',      className: 'font-gothic tracking-widest font-normal' },
     { id: 'silkscreen',  className: 'font-silkscreen tracking-wider font-normal' },
+    { id: 'orbitron',    className: 'font-orbitron tracking-widest font-bold' },
+    { id: 'press-start', className: 'font-press-start tracking-normal font-normal' },
+    { id: 'major-mono',  className: 'font-major-mono tracking-widest font-normal' },
+    { id: 'bungee',      className: 'font-bungee tracking-wider font-normal' },
+    { id: 'cinzel',      className: 'font-cinzel tracking-widest font-bold' },
+    { id: 'dotgothic',   className: 'font-dotgothic tracking-widest font-normal' },
     { id: 'vt323',       className: 'font-vt323 tracking-widest font-normal' },
 ];
 
@@ -97,7 +107,7 @@ const Home = () => {
     const activeFont = FONT_STYLES[currentFontIndex];
 
     return (
-        <div className="relative w-screen h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-6 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-hidden select-none">
+        <div className="relative w-screen h-screen h-[100dvh] bg-black text-white flex flex-col justify-between pt-3 pb-3 px-4 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-hidden select-none">
             <audio ref={audioRef} src={homeAudio} loop preload="auto" />
 
             <Navbar />
@@ -122,19 +132,19 @@ const Home = () => {
             </main>
 
             {/* Footer: social links, audio toggle, counters */}
-            <footer className="w-full flex flex-wrap justify-between items-center gap-y-3 z-10">
-                <div className="flex items-center gap-3 sm:gap-5 text-zinc-400">
+            <footer className="w-full flex justify-between items-center gap-2 z-10">
+                <div className="flex items-center gap-2.5 sm:gap-4 text-zinc-400">
                     <a href="https://github.com/PRN-6" target="_blank" rel="noopener noreferrer"
                         className="hover:text-white transition-colors p-1" aria-label="GitHub">
-                        <Github size={18} />
+                        <SiGithub size={15} />
                     </a>
                     <a href="https://www.linkedin.com/in/prinson-nazareth/" target="_blank" rel="noopener noreferrer"
                         className="hover:text-white transition-colors p-1" aria-label="LinkedIn">
-                        <Linkedin size={18} />
+                        <SiLinkedin size={14} />
                     </a>
                     <a href="mailto:prinsonroyal1@gmail.com"
                         className="hover:text-white transition-colors p-1" aria-label="Email">
-                        <Mail size={18} />
+                        <Mail size={17} />
                     </a>
                     <button
                         onClick={() => setIsPlaying((p) => !p)}
@@ -142,11 +152,11 @@ const Home = () => {
                         title={isPlaying ? 'Pause ambient music' : 'Play ambient music'}
                         className={`p-1 transition-colors cursor-pointer ${isPlaying ? 'text-white' : 'text-zinc-600 hover:text-zinc-300'}`}
                     >
-                        {isPlaying ? <Music size={17} className="animate-pulse" /> : <Music2 size={17} />}
+                        {isPlaying ? <Music size={16} className="animate-pulse" /> : <Music2 size={16} />}
                     </button>
                 </div>
 
-                <div className="flex items-center gap-2 sm:gap-4 text-xs font-mono-code text-zinc-400">
+                <div className="flex items-center gap-1.5 sm:gap-3 text-[11px] sm:text-xs font-mono-code text-zinc-400 shrink-0">
                     <div className="flex items-center gap-1" title="Total visitors">
                         <span className="text-zinc-600">vis:</span>
                         <span className="text-zinc-300 font-semibold">{visitorCount.toLocaleString()}</span>
