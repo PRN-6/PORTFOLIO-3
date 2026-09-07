@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import p1 from '../assets/p1.png';

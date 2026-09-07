@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import { Mail, Sparkles, Music, Music2 } from 'lucide-react';
 import { SiGithub, SiLinkedin } from 'react-icons/si';

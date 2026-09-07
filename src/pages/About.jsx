@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/Navbar';
 import mainprofilepic from '../assets/mainprofilepic.jpg';
 import { FaNode, FaReact, FaJava } from 'react-icons/fa';
