@@ -117,6 +117,6 @@ A fast, typography-driven personal portfolio website built with **React 19**, **
 - Website: [prinson.is-a.dev](https://prinson.is-a.dev/)
 - GitHub: [@PRN-6](https://github.com/PRN-6)
 - LinkedIn: [prinson-nazareth](https://www.linkedin.com/in/prinson-nazareth/)
-- X: [@r_prinson66328](https://x.com/r_prinson66328)
+- X: [@LeoZodiac66](https://x.com/LeoZodiac66)
 
 ⭐ *If you find this project interesting, feel free to give it a star!*

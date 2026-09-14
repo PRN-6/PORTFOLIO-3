@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar';
-import mainprofilepic from '../assets/mainprofilepic.jpg';
+import mainprofilepic from '../assets/hotaro.jpg';
 import { FaNode, FaReact, FaJava } from 'react-icons/fa';
 import {
     SiCss3,
@@ -113,7 +113,7 @@ const About = () => {
                                 <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                             <a
-                                href="https://x.com/r_prinson66328"
+                                href="https://x.com/LeoZodiac66"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"

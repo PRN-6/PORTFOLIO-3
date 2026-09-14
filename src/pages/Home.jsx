@@ -5,20 +5,20 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 import homeAudio from '../assets/audio/homeaudio.mp3';
 
 const FONT_STYLES = [
-    { id: 'rye',         className: 'font-rye tracking-wide' },
+    { id: 'rye', className: 'font-rye tracking-wide' },
     { id: 'handwriting', className: 'font-handwriting tracking-wider font-normal' },
-    { id: 'glitch',      className: 'font-glitch tracking-normal font-normal' },
-    { id: 'pixel',       className: 'font-pixel tracking-normal font-normal' },
-    { id: 'monoton',     className: 'font-monoton tracking-wider font-normal' },
-    { id: 'gothic',      className: 'font-gothic tracking-widest font-normal' },
-    { id: 'silkscreen',  className: 'font-silkscreen tracking-wider font-normal' },
-    { id: 'orbitron',    className: 'font-orbitron tracking-widest font-bold' },
+    { id: 'glitch', className: 'font-glitch tracking-normal font-normal' },
+    { id: 'pixel', className: 'font-pixel tracking-normal font-normal' },
+    { id: 'monoton', className: 'font-monoton tracking-wider font-normal' },
+    { id: 'gothic', className: 'font-gothic tracking-widest font-normal' },
+    { id: 'silkscreen', className: 'font-silkscreen tracking-wider font-normal' },
+    { id: 'orbitron', className: 'font-orbitron tracking-widest font-bold' },
     { id: 'press-start', className: 'font-press-start tracking-normal font-normal' },
-    { id: 'major-mono',  className: 'font-major-mono tracking-widest font-normal' },
-    { id: 'bungee',      className: 'font-bungee tracking-wider font-normal' },
-    { id: 'cinzel',      className: 'font-cinzel tracking-widest font-bold' },
-    { id: 'dotgothic',   className: 'font-dotgothic tracking-widest font-normal' },
-    { id: 'vt323',       className: 'font-vt323 tracking-widest font-normal' },
+    { id: 'major-mono', className: 'font-major-mono tracking-widest font-normal' },
+    { id: 'bungee', className: 'font-bungee tracking-wider font-normal' },
+    { id: 'cinzel', className: 'font-cinzel tracking-widest font-bold' },
+    { id: 'dotgothic', className: 'font-dotgothic tracking-widest font-normal' },
+    { id: 'vt323', className: 'font-vt323 tracking-widest font-normal' },
 ];
 
 const NAMESPACE = 'prinson-portfolio-2026-v2';

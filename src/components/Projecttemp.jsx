@@ -4,19 +4,21 @@ import { SiGithub } from 'react-icons/si';
 import p1 from '../assets/p1.png';
 import p2 from '../assets/p2.png';
 import p3 from '../assets/p3.png';
+import privacyPic from '../assets/image.png';
 
 const projectsData = [
     {
-        id: 'nova',
-        title: 'NOVA',
+        id: 'privacy68',
+        title: 'privacy68',
         tagline: 'Privacy-preserving edge-native voice automation & AI desktop assistant.',
         tags: ['Python', 'Edge AI', 'ASR', 'Privacy', 'Automation'],
-        version: 'v2.0.0',
+        version: 'v1.0.0',
+        inDevelopment: true,
         description:
             'An ultra-low latency, 100% private, on-device AI voice assistant and desktop automation framework engineered for local semantic routing and quantized speech recognition.',
-        github: 'https://github.com/PRN-6/NOVA',
-        demo: null,
-        image: null // No image yet: left blank as requested
+        github: 'https://github.com/PRN-6/privacy68',
+        demo: 'https://prn-6.github.io/PRIVACY68/index.html',
+        image: privacyPic
     },
     {
         id: 'astrix',
@@ -36,6 +38,7 @@ const projectsData = [
         tagline: 'Minimalist typography-driven portfolio website.',
         tags: ['React', 'Tailwind v4', 'Vite', 'Kinetic Fonts'],
         version: 'v2.0.0',
+        inDevelopment: true,
         description:
             'A distraction-free, dark-themed personal website focused on data ownership, privacy, kinetic typography, and raw terminal aesthetics.',
         github: 'https://github.com/PRN-6/PORTFOLIO-3',
@@ -134,13 +137,21 @@ const Projecttemp = () => {
             {/* Left Card: Title, Version, Tagline & Tech Pills */}
             <div className="border border-zinc-900 bg-black p-5 sm:p-6 md:p-8 flex flex-col justify-between min-h-[240px] sm:min-h-[280px] md:min-h-[350px]">
                 <div className="space-y-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
                         <h2 className="text-3xl sm:text-4xl text-white font-pixel font-normal tracking-wide">
                             {proj.title}
                         </h2>
-                        <span className="font-mono-code text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded">
-                            {proj.version}
-                        </span>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                            {proj.inDevelopment && (
+                                <span className="font-mono-code text-[10px] text-amber-400 border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 rounded flex items-center gap-1" title="In Active Development">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                                    in dev
+                                </span>
+                            )}
+                            <span className="font-mono-code text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded">
+                                {proj.version}
+                            </span>
+                        </div>
                     </div>
                     <p className="text-zinc-400 text-sm font-sans leading-relaxed">
                         {proj.tagline}
