@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import mainprofilepic from '../assets/hotaro.jpg';
+import resumePdf from '../assets/resume.pdf';
 import { FaNode, FaReact, FaJava } from 'react-icons/fa';
 import {
     SiCss3,
@@ -144,8 +145,10 @@ const About = () => {
                             {/* Actions: Download Resume & Buy Me A Chai */}
                             <div className="pt-2 flex flex-wrap items-center gap-3">
                                 <a
-                                    href="/resume.pdf"
+                                    href={resumePdf}
                                     download="Prinson_Nazareth_Resume.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-700 bg-zinc-900 hover:border-zinc-500 hover:bg-zinc-800 text-white font-mono-code text-xs transition-all duration-200 group cursor-pointer"
                                 >
                                     <FileText size={13} className="text-zinc-400 group-hover:text-white transition-colors" />
