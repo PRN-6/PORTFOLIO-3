@@ -17,7 +17,8 @@ import {
     SiGithub,
     SiLinkedin,
     SiX,
-    SiLeetcode
+    SiLeetcode,
+    SiHackerrank
 } from 'react-icons/si';
 import { ArrowUpRight, Code, Terminal, FileText, Download } from 'lucide-react';
 
@@ -75,7 +76,7 @@ const About = () => {
                         </div>
 
                         {/* Social Links */}
-                        <div className="pt-4 border-t border-zinc-900 flex flex-wrap items-center justify-between gap-y-2 font-mono-code text-xs">
+                        <div className="pt-4 border-t border-zinc-900 flex flex-wrap items-center justify-between gap-x-2 gap-y-2 font-mono-code text-xs">
                             <a
                                 href="https://github.com/PRN-6"
                                 target="_blank"
@@ -111,6 +112,16 @@ const About = () => {
                             >
                                 <SiLeetcode size={12} className="text-zinc-500 group-hover:text-[#FFA116] transition-colors" />
                                 <span>leetcode</span>
+                                <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            </a>
+                            <a
+                                href="https://www.hackerrank.com/profile/prinsonroyal2"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
+                            >
+                                <SiHackerrank size={12} className="text-zinc-500 group-hover:text-[#2EC866] transition-colors" />
+                                <span>hackerrank</span>
                                 <ArrowUpRight size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                             <a
