@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
-import p1 from '../assets/p1.png';
-import p2 from '../assets/p2.png';
-import p3 from '../assets/p3.png';
-import privacyPic from '../assets/image.png';
+import p1 from '../assets/p1.webp';
+import p2 from '../assets/p2.webp';
+import p3 from '../assets/p3.webp';
+import privacyPic from '../assets/image.webp';
 
 const projectsData = [
     {
@@ -193,6 +193,8 @@ const Projecttemp = () => {
                             <img
                                 src={proj.image}
                                 alt={proj.title}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-cover"
                             />
                         ) : (
