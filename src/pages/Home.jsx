@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
-import { Mail, Sparkles, Music, Music2 } from 'lucide-react';
+import { Mail, Music, Music2 } from 'lucide-react';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import homeAudio from '../assets/audio/homeaudio.mp3';
 
@@ -29,11 +29,7 @@ const Home = () => {
         const cached = localStorage.getItem('prinson_cached_visitors');
         return cached ? parseInt(cached, 10) : 1;
     });
-    const [clickCount, setClickCount] = useState(() => {
-        const cached = localStorage.getItem('prinson_cached_clicks');
-        return cached ? parseInt(cached, 10) : 1;
-    });
-    const [isBouncing, setIsBouncing] = useState(false);
+
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
 
@@ -64,17 +60,6 @@ const Home = () => {
                     }
                 }
             } catch { /* use cached */ }
-
-            try {
-                const res = await fetch(`https://abacus.jasoncameron.dev/get/${NAMESPACE}/clicks`);
-                if (res.ok) {
-                    const { value } = await res.json();
-                    if (typeof value === 'number') {
-                        setClickCount(value);
-                        localStorage.setItem('prinson_cached_clicks', String(value));
-                    }
-                }
-            } catch { /* use cached */ }
         };
         load();
     }, []);
@@ -88,21 +73,7 @@ const Home = () => {
             : audio.pause();
     }, [isPlaying]);
 
-    const handleGlobalClick = async () => {
-        setIsBouncing(true);
-        setTimeout(() => setIsBouncing(false), 150);
-        setClickCount((n) => n + 1); // optimistic update
-        try {
-            const res = await fetch(`https://abacus.jasoncameron.dev/hit/${NAMESPACE}/clicks`);
-            if (res.ok) {
-                const { value } = await res.json();
-                if (typeof value === 'number') {
-                    setClickCount(value);
-                    localStorage.setItem('prinson_cached_clicks', String(value));
-                }
-            }
-        } catch { /* keep optimistic */ }
-    };
+
 
     const activeFont = FONT_STYLES[currentFontIndex];
 
@@ -157,20 +128,12 @@ const Home = () => {
                 </div>
 
                 <div className="flex items-center gap-1.5 sm:gap-3 text-[11px] sm:text-xs font-mono-code text-zinc-400 shrink-0">
+                    <span className="text-zinc-700">© {new Date().getFullYear()}</span>
+                    <span className="text-zinc-800">•</span>
                     <div className="flex items-center gap-1" title="Total visitors">
                         <span className="text-zinc-600">vis:</span>
                         <span className="text-zinc-300 font-semibold">{visitorCount.toLocaleString()}</span>
                     </div>
-                    <span className="text-zinc-700">•</span>
-                    <button
-                        onClick={handleGlobalClick}
-                        title="Click to bump the counter!"
-                        className={`group flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 border border-zinc-800 bg-zinc-950 hover:border-zinc-600 hover:bg-zinc-900 text-zinc-300 hover:text-white rounded transition-all cursor-pointer select-none active:scale-90 ${isBouncing ? 'scale-105 border-zinc-500 text-white' : ''}`}
-                    >
-                        <Sparkles size={10} className="text-zinc-500 group-hover:text-amber-400 transition-colors" />
-                        <span>click me:</span>
-                        <span className="text-white font-semibold">{clickCount.toLocaleString()}</span>
-                    </button>
                 </div>
             </footer>
         </div>

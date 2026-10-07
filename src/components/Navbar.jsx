@@ -30,6 +30,14 @@ const Navbar = () => {
                 >
                     about me
                 </Link>
+                <span className="text-zinc-600 text-xs">•</span>
+                <Link
+                    to="/contact"
+                    className={`transition-colors duration-200 ${currentPath === '/contact' ? 'text-white font-medium' : 'text-zinc-400 hover:text-white'
+                        }`}
+                >
+                    contact
+                </Link>
             </nav>
         </header>
     );

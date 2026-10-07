@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import mainprofilepic from '../assets/hotaro.jpg';
 import resumePdf from '../assets/resume.pdf';
@@ -40,7 +41,60 @@ const techStack = [
     { name: 'GitHub', icon: SiGithub }
 ];
 
+const NAMESPACE = 'prinson-portfolio-2026-v2';
+
 const About = () => {
+    const [globalClicks, setGlobalClicks] = useState(() => {
+        const cached = localStorage.getItem('prinson_cached_clicks');
+        return cached ? parseInt(cached, 10) : 0;
+    });
+    const [personalClicks, setPersonalClicks] = useState(() => {
+        const cached = localStorage.getItem('prinson_personal_clicks');
+        return cached ? parseInt(cached, 10) : 0;
+    });
+    const [isBouncing, setIsBouncing] = useState(false);
+
+    // Fetch global click count on mount
+    useEffect(() => {
+        const fetchClicks = async () => {
+            try {
+                const res = await fetch(`https://abacus.jasoncameron.dev/get/${NAMESPACE}/clicks`);
+                if (res.ok) {
+                    const { value } = await res.json();
+                    if (typeof value === 'number') {
+                        setGlobalClicks(value);
+                        localStorage.setItem('prinson_cached_clicks', String(value));
+                    }
+                }
+            } catch { /* use cached */ }
+        };
+        fetchClicks();
+    }, []);
+
+    const handleClick = async () => {
+        setIsBouncing(true);
+        setTimeout(() => setIsBouncing(false), 200);
+
+        // Optimistic updates
+        setGlobalClicks((n) => n + 1);
+        setPersonalClicks((n) => {
+            const next = n + 1;
+            localStorage.setItem('prinson_personal_clicks', String(next));
+            return next;
+        });
+
+        try {
+            const res = await fetch(`https://abacus.jasoncameron.dev/hit/${NAMESPACE}/clicks`);
+            if (res.ok) {
+                const { value } = await res.json();
+                if (typeof value === 'number') {
+                    setGlobalClicks(value);
+                    localStorage.setItem('prinson_cached_clicks', String(value));
+                }
+            }
+        } catch { /* keep optimistic */ }
+    };
+
     return (
         <div className="relative min-h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-4 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-x-hidden select-none hide-scrollbar">
             {/* Top Navigation */}
@@ -71,6 +125,10 @@ const About = () => {
                                 </p>
                                 <p className="font-mono-code text-xs text-zinc-500 pt-1">
                                     Developer • Builder
+                                </p>
+                                <p className="font-mono-code text-[11px] text-zinc-600 pt-3 italic leading-relaxed">
+                                    "If I don't have to do it, I won't. If I have to do it, I'll make it quick."
+                                    <span className="block text-zinc-700 mt-1 not-italic">— Houtarou Oreki</span>
                                 </p>
                             </div>
                         </div>
@@ -153,7 +211,7 @@ const About = () => {
                                 I love clean code, elegant typography, modern developer tooling, and self-hosted software where you own your data. Always learning and exploring new technologies.
                             </p>
 
-                            {/* Actions: Download Resume & Buy Me A Chai */}
+                            {/* Actions: Download Resume, Buy Me A Chai & Click Counter */}
                             <div className="pt-2 flex flex-wrap items-center gap-3">
                                 <a
                                     href={resumePdf}
@@ -176,6 +234,23 @@ const About = () => {
                                     <span>☕ buy me a chai</span>
                                     <ArrowUpRight size={13} />
                                 </a>
+                            </div>
+
+                            {/* Click Me Counter */}
+                            <div className="pt-3 border-t border-zinc-900 flex items-center gap-4">
+                                <button
+                                    onClick={handleClick}
+                                    className={`inline-flex items-center gap-2 px-4 py-2 border border-zinc-700 bg-zinc-900 hover:border-zinc-500 hover:bg-zinc-800 text-white font-mono-code text-xs transition-all duration-200 cursor-pointer select-none active:scale-95 group ${isBouncing ? 'border-zinc-500 bg-zinc-800' : ''}`}
+                                >
+                                    <span>click me</span>
+                                    <span className="text-zinc-400 group-hover:text-white transition-colors">⟩</span>
+                                    <span className={`font-semibold tabular-nums transition-transform duration-150 ${isBouncing ? 'scale-110' : ''}`}>
+                                        {globalClicks.toLocaleString()}
+                                    </span>
+                                </button>
+                                <span className="font-mono-code text-[11px] text-zinc-600">
+                                    you · {personalClicks}
+                                </span>
                             </div>
                         </div>
 
@@ -208,7 +283,11 @@ const About = () => {
             {/* Bottom Footer spanning both corners */}
             <footer className="w-full flex justify-between items-center text-xs font-mono-code text-zinc-500 pt-6">
                 <span>// about me</span>
-                <span className="text-zinc-600">portfolio v2</span>
+                <div className="flex items-center gap-2">
+                    <span className="text-zinc-700">© {new Date().getFullYear()}</span>
+                    <span className="text-zinc-800">•</span>
+                    <span className="text-zinc-600">portfolio v2</span>
+                </div>
             </footer>
         </div>
     );

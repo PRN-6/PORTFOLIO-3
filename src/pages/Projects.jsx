@@ -15,7 +15,11 @@ const Projects = () => {
             {/* Bottom spacer / minimal status */}
             <footer className="w-full flex justify-between items-center text-xs font-mono-code text-zinc-500 pt-6">
                 <span>// projects</span>
-                <span className="text-zinc-600">portfolio v2</span>
+                <div className="flex items-center gap-2">
+                    <span className="text-zinc-700">© {new Date().getFullYear()}</span>
+                    <span className="text-zinc-800">•</span>
+                    <span className="text-zinc-600">portfolio v2</span>
+                </div>
             </footer>
         </div>
     );
