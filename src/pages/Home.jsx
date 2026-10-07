@@ -168,7 +168,7 @@ const Home = () => {
                         className={`group flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 border border-zinc-800 bg-zinc-950 hover:border-zinc-600 hover:bg-zinc-900 text-zinc-300 hover:text-white rounded transition-all cursor-pointer select-none active:scale-90 ${isBouncing ? 'scale-105 border-zinc-500 text-white' : ''}`}
                     >
                         <Sparkles size={10} className="text-zinc-500 group-hover:text-amber-400 transition-colors" />
-                        <span>clicks:</span>
+                        <span>click me:</span>
                         <span className="text-white font-semibold">{clickCount.toLocaleString()}</span>
                     </button>
                 </div>
