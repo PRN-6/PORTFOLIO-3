@@ -4,6 +4,7 @@ import { SiGithub } from 'react-icons/si';
 import p1 from '../assets/p1.webp';
 import p2 from '../assets/p2.webp';
 import p3 from '../assets/p3.webp';
+import p4 from '../assets/p4.webp';
 import privacyPic from '../assets/image.webp';
 
 const projectsData = [
@@ -56,6 +57,18 @@ const projectsData = [
         github: 'https://github.com/PRN-6/3D-website',
         demo: 'https://3-d-website-blond.vercel.app/',
         image: p2
+    },
+    {
+        id: 'workspace68',
+        title: 'workspace68',
+        tagline: 'Visual drag-and-drop website builder with AI page generation & React export.',
+        tags: ['React', 'Vite', 'Tailwind CSS', 'Zustand', '@dnd-kit', 'JSZip'],
+        version: 'v1.0.0',
+        description:
+            'A modern, browser-based visual website builder. Design responsive pages with drag-and-drop components, full styling controls, AI-assisted generation from reference screenshots, and one-click production-ready React source code export.',
+        github: 'https://github.com/PRN-6/workspace68',
+        demo: 'https://workspace68.vercel.app/',
+        image: p4
     }
 ];
 
@@ -79,7 +92,7 @@ const Projecttemp = () => {
                 handleSwitchProject((selectedProjectIndex + 1) % projectsData.length);
             } else if (e.key === 'ArrowLeft') {
                 handleSwitchProject((selectedProjectIndex - 1 + projectsData.length) % projectsData.length);
-            } else if (['1', '2', '3', '4'].includes(e.key)) {
+            } else if (['1', '2', '3', '4', '5'].includes(e.key)) {
                 const idx = parseInt(e.key, 10) - 1;
                 if (idx < projectsData.length) {
                     handleSwitchProject(idx);
@@ -287,7 +300,7 @@ const Projecttemp = () => {
 
                     {/* Keyboard Navigation Tip - hidden on touch devices */}
                     <p className="hidden sm:block font-mono-code text-[11px] text-zinc-600 tracking-wider text-center">
-                        tip: press <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">←</kbd> <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">→</kbd> or <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">1-4</kbd> to switch
+                        tip: press <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">←</kbd> <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">→</kbd> or <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">1-5</kbd> to switch
                     </p>
                     {/* Swipe hint - visible only on mobile */}
                     <p className="sm:hidden font-mono-code text-[11px] text-zinc-600 tracking-wider text-center">
