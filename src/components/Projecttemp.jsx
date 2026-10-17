@@ -13,7 +13,7 @@ const projectsData = [
         title: 'privacy68',
         tagline: 'Privacy-preserving edge-native voice automation & AI desktop assistant.',
         tags: ['Python', 'Edge AI', 'ASR', 'Privacy', 'Automation'],
-        version: 'v1.0.0',
+        version: 'v1.1.0',
         inDevelopment: true,
         description:
             'An ultra-low latency, 100% private, on-device AI voice assistant and desktop automation framework engineered for local semantic routing and quantized speech recognition.',
@@ -300,6 +300,7 @@ const Projecttemp = () => {
 
                     {/* Keyboard Navigation Tip - hidden on touch devices */}
                     <p className="hidden sm:block font-mono-code text-[11px] text-zinc-600 tracking-wider text-center">
+                        tip: press <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">←</kbd> <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">→</kbd> or <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">1-4</kbd> to switch
                         tip: press <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">←</kbd> <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">→</kbd> or <kbd className="px-1.5 py-0.5 border border-zinc-800 rounded bg-zinc-950 text-zinc-400">1-5</kbd> to switch
                     </p>
                     {/* Swipe hint - visible only on mobile */}
