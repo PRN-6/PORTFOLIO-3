@@ -69,6 +69,18 @@ const projectsData = [
         github: 'https://github.com/PRN-6/workspace68',
         demo: 'https://workspace68.vercel.app/',
         image: p4
+    },
+    {
+        id: 'sereen',
+        title: 'Sereen',
+        tagline: 'Professional-grade Linux application for Epson projector network control.',
+        tags: ['Python', 'GTK4', 'GStreamer', 'Linux', 'Networking'],
+        version: 'v1.0.0',
+        description:
+            'A professional-grade Linux application designed to discover and control Epson projectors over a network. Bridges the gap between proprietary Epson protocols and open-source Linux desktop environments with support for ESC/VP.net and PJLink.',
+        github: 'https://github.com/PRN-6/linux-projection',
+        demo: '',
+        image: null
     }
 ];
 
@@ -212,7 +224,7 @@ const Projecttemp = () => {
                             />
                         ) : (
                             <div className="w-full h-full bg-[#121212] flex items-center justify-center">
-                                {/* Left blank for projects without picture */}
+                                <SiGithub size={64} className="text-zinc-800" />
                             </div>
                         )}
                     </div>
