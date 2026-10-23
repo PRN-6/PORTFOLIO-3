@@ -8,15 +8,15 @@ import { RotateCcw, Bot, Globe, ArrowLeftRight, AlertCircle, Wifi, WifiOff } fro
 /**
  * Community Chess — Supabase Realtime
  *
- * IMPORTANT: Uses react-chessboard v5 API where all config
- * goes inside options={} and callbacks receive object args:
- *   onPieceDrop: ({ piece, sourceSquare, targetSquare }) => boolean
- *   onSquareClick: ({ piece, square }) => void
+ * Features:
+ * - Real-time global synchronization across all active players via Supabase
+ * - Graceful fallback to local mode if Supabase keys are not configured
+ * - 2 Modes: Global (Multiplayer) and AI (vs Bot)
  */
 const FunPage = () => {
   const [game, setGame] = useState(() => new Chess());
-  const [playerColor, setPlayerColor] = useState('w');
-  const [gameMode, setGameMode] = useState(isSupabaseConfigured ? 'global' : 'both');
+  const [playerColor, setPlayerColor] = useState('w'); // 'w' | 'b' | 'both'
+  const [gameMode, setGameMode] = useState(isSupabaseConfigured ? 'global' : 'ai'); // 'global' | 'ai'
   const [movesCount, setMovesCount] = useState(0);
   const [message, setMessage] = useState('');
   const [moveFrom, setMoveFrom] = useState(null);
@@ -50,19 +50,38 @@ const FunPage = () => {
       return;
     }
 
-    // Fetch persisted game state
-    supabase
-      .from('chess_game')
-      .select('*')
-      .eq('id', 'main')
-      .maybeSingle()
-      .then(({ data, error }) => {
-        if (!error && data?.fen) {
-          try { setGame(new Chess(data.fen)); } catch {}
-        }
-      });
+    // 1. Fetch persisted game state immediately on load
+    const fetchInitialState = async () => {
+      const { data, error } = await supabase
+        .from('chess_game')
+        .select('*')
+        .eq('id', 'main')
+        .maybeSingle();
 
-    // Realtime broadcast channel
+      if (error) {
+        console.error('Error fetching initial state:', error.message);
+      } else if (data?.fen) {
+        try {
+          setGame(new Chess(data.fen));
+        } catch (e) {
+          console.error('Invalid FEN from Supabase:', e);
+        }
+      } else {
+        // If no game exists in DB, create the initial state
+        const initial = new Chess();
+        await supabase.from('chess_game').upsert({
+          id: 'main',
+          fen: initial.fen(),
+          turn: 'w',
+          history: [],
+          updated_at: new Date().toISOString(),
+        });
+      }
+    };
+
+    fetchInitialState();
+
+    // 2. Realtime broadcast channel
     const channel = supabase.channel('global-chess-room', {
       config: { broadcast: { ack: true } },
     });
@@ -121,13 +140,15 @@ const FunPage = () => {
   }, [game]);
 
   // Sync to Supabase or localStorage
-  const syncGameState = useCallback((newGame) => {
+  const syncGameState = useCallback(async (newGame) => {
     if (isSupabaseConfigured && supabase && gameMode === 'global') {
       const payload = {
         fen: newGame.fen(),
         turn: newGame.turn(),
         history: newGame.history(),
       };
+
+      // 1. Instant Broadcast to others
       if (channelRef.current) {
         channelRef.current.send({
           type: 'broadcast',
@@ -135,22 +156,32 @@ const FunPage = () => {
           payload,
         });
       }
-      supabase
-        .from('chess_game')
-        .upsert({
-          id: 'main',
-          fen: payload.fen,
-          turn: payload.turn,
-          history: payload.history,
-          updated_at: new Date().toISOString(),
-        })
-        .then(({ error }) => {
-          if (error) console.error('Supabase Save Error:', error.message);
-        });
+
+      // 2. Persistent save to DB
+      try {
+        const { error } = await supabase
+          .from('chess_game')
+          .upsert({
+            id: 'main',
+            fen: payload.fen,
+            turn: payload.turn,
+            history: payload.history,
+            updated_at: new Date().toISOString(),
+          });
+
+        if (error) {
+          console.error('Supabase Persistence Error:', error.message);
+          flashNotice(`Save failed: ${error.message}`);
+        } else {
+          console.log('✅ Game state successfully saved to Supabase!');
+        }
+      } catch (err) {
+        console.error('Database Exception:', err);
+      }
     } else {
       try { localStorage.setItem('portfolio_chess_fen', newGame.fen()); } catch {}
     }
-  }, [gameMode]);
+  }, [gameMode, flashNotice]);
 
   // Execute a move
   const makeAMove = useCallback((moveObj) => {
@@ -189,7 +220,6 @@ const FunPage = () => {
   }, [game, gameMode, movesCount, playerColor, syncGameState]);
 
   // ─── react-chessboard v5 CALLBACKS ──────────────────────
-  // v5 signature: ({ piece, sourceSquare, targetSquare }) => boolean
   const handlePieceDrop = useCallback(({ sourceSquare, targetSquare }) => {
     if (gameMode === 'global' || gameMode === 'ai') {
       if (playerColor !== 'both' && game.turn() !== playerColor) {
@@ -200,7 +230,6 @@ const FunPage = () => {
     return makeAMove({ from: sourceSquare, to: targetSquare, promotion: 'q' });
   }, [game, gameMode, playerColor, makeAMove, flashNotice]);
 
-  // v5 signature: ({ piece, square }) => void
   const handleSquareClick = useCallback(({ square }) => {
     if (!moveFrom) {
       const piece = game.get(square);
@@ -236,7 +265,6 @@ const FunPage = () => {
     makeAMove({ from: moveFrom, to: square, promotion: 'q' });
   }, [game, gameMode, playerColor, moveFrom, getMoveOptions, makeAMove, flashNotice]);
 
-  // ─── Board controls ──────────────────────────────────────
   const resetBoard = () => {
     const fresh = new Chess();
     setGame(fresh);
@@ -284,7 +312,6 @@ const FunPage = () => {
     flashNotice(`Mode: ${mode === 'global' ? 'Global' : mode === 'ai' ? 'vs Bot' : 'Free Play'}`);
   };
 
-  // ─── Computed display values ──────────────────────────────
   const statusSummary = useMemo(() => {
     if (game.isCheckmate()) return `Checkmate! ${game.turn() === 'w' ? 'Black' : 'White'} wins!`;
     if (game.isDraw()) return 'Draw!';
@@ -302,7 +329,6 @@ const FunPage = () => {
     return pairs.slice(-6).join(' | ');
   }, [game]);
 
-  // ─── react-chessboard v5 options object ───────────────────
   const boardOptions = useMemo(() => ({
     position: game.fen(),
     onPieceDrop: handlePieceDrop,
@@ -319,7 +345,6 @@ const FunPage = () => {
     <div className="relative min-h-screen bg-black text-white flex flex-col justify-between pt-3 pb-3 px-4 sm:pt-4 sm:pb-4 sm:px-10 md:pt-4 md:pb-5 md:px-12 overflow-x-hidden select-none">
       <Navbar />
       <main className="w-full max-w-6xl mx-auto my-auto py-6 sm:py-8">
-        {/* Toast */}
         {message && (
           <div className="mb-4 p-3 bg-zinc-900 border border-zinc-700 text-xs font-mono-code text-zinc-200 flex items-center justify-between gap-2 shadow-lg">
             <div className="flex items-center gap-2">
@@ -331,7 +356,6 @@ const FunPage = () => {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-          {/* Board */}
           <div className="md:col-span-7 border border-zinc-900 bg-black p-4 sm:p-6 flex flex-col items-center justify-center gap-4">
             <div
               className="w-full max-w-[480px] aspect-square shadow-2xl border-2 border-zinc-700 bg-zinc-950 p-1"
@@ -345,7 +369,6 @@ const FunPage = () => {
             </div>
           </div>
 
-          {/* Controls */}
           <div className="md:col-span-5 border border-zinc-900 bg-black p-6 flex flex-col justify-between space-y-6">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
@@ -371,7 +394,6 @@ const FunPage = () => {
                 </p>
               </div>
 
-              {/* Status */}
               <div className="p-3 bg-[#0d0d0d] border border-zinc-800 rounded-sm space-y-1">
                 <div className="flex justify-between items-center">
                   <span className="font-mono-code text-[10px] text-zinc-500 uppercase">Status</span>
@@ -380,13 +402,11 @@ const FunPage = () => {
                 <p className={`font-mono-code text-sm font-semibold ${game.isCheck() ? 'text-red-400' : 'text-zinc-200'}`}>{statusSummary}</p>
               </div>
 
-              {/* Mode */}
               <div className="space-y-2">
-                <span className="font-mono-code text-[10px] text-zinc-500 uppercase block">Mode</span>
-                <div className="grid grid-cols-3 gap-2">
+                <span className="font-mono-code text-[10px] text-zinc-500 uppercase block">Game Mode</span>
+                <div className="grid grid-cols-2 gap-2">
                   {[
                     { mode: 'global', icon: <Globe size={13} />, label: 'Global' },
-                    { mode: 'both', icon: <ArrowLeftRight size={13} />, label: 'Free Play' },
                     { mode: 'ai', icon: <Bot size={13} />, label: 'vs Bot' },
                   ].map(({ mode, icon, label }) => (
                     <button
@@ -405,28 +425,24 @@ const FunPage = () => {
                 </div>
               </div>
 
-              {/* Side & Actions */}
               <div className="p-3 bg-[#0d0d0d] border border-zinc-800 space-y-3 font-mono-code text-xs">
                 <div className="flex justify-between items-center">
                   <span className="text-zinc-500">Your Side:</span>
                   <span className="text-white font-bold">{gameMode === 'both' ? 'Both' : playerColor === 'w' ? 'White' : 'Black'}</span>
                 </div>
-                <div className="flex gap-2 pt-1">
-                  {gameMode !== 'both' && (
-                    <button onClick={toggleSide} className="flex-1 py-1.5 px-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 text-[11px] transition-all flex items-center justify-center gap-1 active:scale-95">
-                      <ArrowLeftRight size={12} /><span>Switch</span>
-                    </button>
-                  )}
-                  <button onClick={resetBoard} className="flex-1 py-1.5 px-2 bg-zinc-900 border border-zinc-800 hover:border-red-900/60 hover:text-red-400 text-zinc-300 text-[11px] transition-all flex items-center justify-center gap-1 active:scale-95">
-                    <RotateCcw size={12} /><span>Reset</span>
-                  </button>
-                </div>
               </div>
 
-              {/* Move History */}
               <div className="p-3 bg-[#0d0d0d] border border-zinc-800">
                 <span className="font-mono-code text-[10px] text-zinc-500 uppercase block mb-1">Recent Moves</span>
                 <p className="font-mono-code text-[11px] text-zinc-400 truncate">{moveHistory}</p>
+              </div>
+
+              <div className="pt-4 border-t border-zinc-900">
+                <p className="text-[11px] font-mono-code text-zinc-500 leading-relaxed">
+                  {gameMode === 'global'
+                    ? '🌐 Global Mode: A persistent, real-time board shared with every visitor. Your moves are synchronized instantly across the globe via Supabase.'
+                    : '🤖 Bot Mode: A local session for practice. Challenge a randomized AI opponent that reacts to your strategies in real-time.'}
+                </p>
               </div>
             </div>
           </div>
@@ -434,7 +450,14 @@ const FunPage = () => {
       </main>
 
       <footer className="w-full flex justify-between items-center text-xs font-mono-code text-zinc-500 pt-6">
-        <span>// community_chess</span>
+        <div className="flex flex-col gap-1">
+          <span>// community_chess</span>
+          <span className="text-[10px] opacity-60">
+            {gameMode === 'global'
+              ? 'Global Mode: Synchronized real-time multiplayer via Supabase.'
+              : 'Bot Mode: Local practice against a randomized AI opponent.'}
+          </span>
+        </div>
         <div className="flex items-center gap-2">
           <span>© {new Date().getFullYear()}</span>
           <span>•</span>
