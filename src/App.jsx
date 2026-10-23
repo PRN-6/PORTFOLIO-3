@@ -4,6 +4,7 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
+import Fun from './pages/Fun'
 import NotFound from './pages/NotFound'
 import PageTransition from './components/PageTransition'
 
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='/about' element={<PageTransition><About /></PageTransition>} />
         <Route path='/projects' element={<PageTransition><Projects /></PageTransition>} />
         <Route path='/contact' element={<PageTransition><Contact /></PageTransition>} />
+        <Route path='/fun' element={<PageTransition><Fun /></PageTransition>} />
         <Route path='*' element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>

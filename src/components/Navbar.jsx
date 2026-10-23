@@ -38,6 +38,14 @@ const Navbar = () => {
                 >
                     contact
                 </Link>
+                <span className="text-zinc-600 text-xs">•</span>
+                <Link
+                    to="/fun"
+                    className={`transition-colors duration-200 ${currentPath === '/fun' ? 'text-white font-medium' : 'text-zinc-400 hover:text-white'
+                        }`}
+                >
+                    fun
+                </Link>
             </nav>
         </header>
     );
