@@ -430,6 +430,14 @@ const FunPage = () => {
                   <span className="text-zinc-500">Your Side:</span>
                   <span className="text-white font-bold">{gameMode === 'both' ? 'Both' : playerColor === 'w' ? 'White' : 'Black'}</span>
                 </div>
+                {gameMode === 'ai' && (
+                  <button
+                    onClick={resetBoard}
+                    className="w-full py-1.5 px-2 bg-zinc-900 border border-zinc-800 hover:border-red-900/60 hover:text-red-400 text-zinc-300 text-[11px] transition-all flex items-center justify-center gap-1 active:scale-95"
+                  >
+                    <RotateCcw size={12} /><span>Reset Board</span>
+                  </button>
+                )}
               </div>
 
               <div className="p-3 bg-[#0d0d0d] border border-zinc-800">
