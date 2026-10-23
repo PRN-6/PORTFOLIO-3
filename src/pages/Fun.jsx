@@ -144,7 +144,9 @@ const FunPage = () => {
           history: payload.history,
           updated_at: new Date().toISOString(),
         })
-        .then(() => {});
+        .then(({ error }) => {
+          if (error) console.error('Supabase Save Error:', error.message);
+        });
     } else {
       try { localStorage.setItem('portfolio_chess_fen', newGame.fen()); } catch {}
     }
