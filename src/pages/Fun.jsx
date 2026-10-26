@@ -22,6 +22,10 @@ const FunPage = () => {
   const [moveFrom, setMoveFrom] = useState(null);
   const [optionSquares, setOptionSquares] = useState({});
   const [isLiveConnected, setIsLiveConnected] = useState(false);
+  const [showResetCode, setShowResetCode] = useState(false);
+  const [resetInput, setResetInput] = useState('');
+
+  const ADMIN_RESET_CODE = import.meta.env.VITE_CHESS_ADMIN_CODE || 'secret123'; // Fallback to secret123 if not in env
 
   const channelRef = useRef(null);
 
@@ -298,6 +302,16 @@ const FunPage = () => {
     }
   };
 
+  const handleGlobalReset = () => {
+    if (resetInput === ADMIN_RESET_CODE) {
+      resetBoard();
+      setShowResetCode(false);
+      setResetInput('');
+    } else {
+      flashNotice('Wrong reset code!');
+    }
+  };
+
   const toggleSide = () => {
     const nextSide = playerColor === 'w' ? 'b' : 'w';
     setPlayerColor(nextSide);
@@ -437,6 +451,43 @@ const FunPage = () => {
                   >
                     <RotateCcw size={12} /><span>Reset Board</span>
                   </button>
+                )}
+                {gameMode === 'global' && (
+                  <div className="space-y-2">
+                    {!showResetCode ? (
+                      <button
+                        onClick={() => setShowResetCode(true)}
+                        className="w-full py-1.5 px-2 bg-zinc-900 border border-zinc-800 hover:border-red-900/60 hover:text-red-400 text-zinc-300 text-[11px] transition-all flex items-center justify-center gap-1 active:scale-95"
+                      >
+                        <RotateCcw size={12} /><span>Reset Global Board (Admin)</span>
+                      </button>
+                    ) : (
+                      <div className="flex gap-1">
+                        <input
+                          type="password"
+                          value={resetInput}
+                          onChange={(e) => setResetInput(e.target.value)}
+                          placeholder="Enter Code"
+                          className="flex-1 bg-black border border-zinc-800 text-white text-[11px] px-2 py-1 outline-none focus:border-zinc-600"
+                        />
+                        <button
+                          onClick={handleGlobalReset}
+                          className="px-2 py-1 bg-white text-black text-[11px] font-bold hover:bg-zinc-200 active:scale-95"
+                        >
+                          Confirm
+                        </button>
+                        <button
+                          onClick={() => {
+                            setShowResetCode(false);
+                            setResetInput('');
+                          }}
+                          className="px-2 py-1 bg-zinc-800 text-zinc-400 text-[11px] hover:text-white"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
 
