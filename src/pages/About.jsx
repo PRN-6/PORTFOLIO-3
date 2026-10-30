@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import mainprofilepic from '../assets/hotaro.jpg';
-import resumePdf from '../assets/resume.pdf';
 import { FaNode, FaReact, FaJava } from 'react-icons/fa';
 import {
     SiCss3,
@@ -214,7 +213,7 @@ const About = () => {
                             {/* Actions: Download Resume, Buy Me A Chai & Click Counter */}
                             <div className="pt-2 flex flex-wrap items-center gap-3">
                                 <a
-                                    href={resumePdf}
+                                    href="/resume.pdf"
                                     download="Prinson_Nazareth_Resume.pdf"
                                     target="_blank"
                                     rel="noopener noreferrer"
