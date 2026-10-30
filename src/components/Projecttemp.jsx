@@ -18,8 +18,8 @@ const projectsData = [
         description:
             'A developer tool that turns raw codebases into living, explorable systems. By combining a lightweight AST parsing engine with a custom celestial rendering system, developers can explore file hierarchies and symbol interactions organically.',
         github: 'https://github.com/PRN-6/web66',
-        terminalCommand: 'npx github:PRN-6/web66',
-        demo: '',
+        terminalCommand: 'npx @leozodiac/web66',
+        demo: 'https://prn-6.github.io/web66/',
         image: p6,
         challenge:
             'Understanding large-scale software architectures usually involves sifting through nested directories and tracking mental dependency trees. Traditional static architecture diagrams are either outdated, rigid, or heavy to generate.',
