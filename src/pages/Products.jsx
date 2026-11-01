@@ -14,6 +14,7 @@ import {
 import { SiGithub, SiNodedotjs, SiPython } from 'react-icons/si';
 import p5 from '../assets/p5.webp';
 import p6 from '../assets/p6.webp';
+import p7 from '../assets/p7.webp';
 
 const products = [
     {
@@ -122,7 +123,7 @@ const products = [
         quickCommand: 'pip install git+https://github.com/PRN-6/code68.git',
         github: 'https://github.com/PRN-6/code68',
         demo: 'https://prn-6.github.io/code68/',
-        image: null,
+        image: p7,
         summary:
             'An independent open-source terminal AI coding agent inspired by Claude Code. Offloads heavy LLM inference to remote cloud GPUs while executing tool calls, surgical diffs, and sandboxed commands securely on the developer\'s local machine.',
         challenge:

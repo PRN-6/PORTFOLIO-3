@@ -7,6 +7,7 @@ import p3 from '../assets/p3.webp';
 import p4 from '../assets/p4.webp';
 import p5 from '../assets/p5.webp';
 import p6 from '../assets/p6.webp';
+import p7 from '../assets/p7.webp';
 
 const projectsData = [
     {
@@ -121,7 +122,7 @@ const projectsData = [
         github: 'https://github.com/PRN-6/code68',
         terminalCommand: 'pip install git+https://github.com/PRN-6/code68.git',
         demo: 'https://prn-6.github.io/code68/',
-        image: null,
+        image: p7,
         challenge:
             'Running modern 7B+ coding LLMs locally exhausts GPU memory and slows developer hardware, while fully cloud-based web assistants lack direct, secure access to local terminal tools, file systems, and Git repositories.',
         solution:
