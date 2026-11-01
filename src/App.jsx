@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from 'react-router'
 import { AnimatePresence } from 'framer-motion'
 import About from './pages/About'
 import Projects from './pages/Projects'
+import Products from './pages/Products'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Fun from './pages/Fun'
@@ -15,8 +16,9 @@ const App = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<PageTransition><Home /></PageTransition>} />
-        <Route path='/about' element={<PageTransition><About /></PageTransition>} />
+        <Route path='/products' element={<PageTransition><Products /></PageTransition>} />
         <Route path='/projects' element={<PageTransition><Projects /></PageTransition>} />
+        <Route path='/about' element={<PageTransition><About /></PageTransition>} />
         <Route path='/contact' element={<PageTransition><Contact /></PageTransition>} />
         <Route path='/fun' element={<PageTransition><Fun /></PageTransition>} />
         <Route path='*' element={<PageTransition><NotFound /></PageTransition>} />

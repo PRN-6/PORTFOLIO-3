@@ -111,16 +111,43 @@ const projectsData = [
         image: p4
     },
     {
-        id: 'sereen',
-        title: 'Sereen',
-        tagline: 'Professional-grade Linux application for Epson projector network control.',
-        tags: ['Python', 'GTK4', 'GStreamer', 'Linux', 'Networking'],
+        id: 'code68',
+        title: 'Code68',
+        tagline: 'Autonomous AI Coding Agent | Cloud Intelligence + Local Execution.',
+        tags: ['Python', 'AI Agent', 'FastAPI', 'AST Parser', 'CLI', 'Sandbox'],
         version: 'v1.0.0',
         description:
-            'A professional-grade Linux application designed to discover and control Epson projectors over a network. Bridges the gap between proprietary Epson protocols and open-source Linux desktop environments with support for ESC/VP.net and PJLink.',
-        github: 'https://github.com/PRN-6/linux-projection',
-        demo: '',
-        image: null
+            'An independent open-source terminal AI coding agent inspired by Claude Code. Offloads heavy LLM inference to remote cloud GPUs while executing tool calls, surgical unified diffs, and sandboxed commands securely on the developer\'s local machine.',
+        github: 'https://github.com/PRN-6/code68',
+        terminalCommand: 'pip install git+https://github.com/PRN-6/code68.git',
+        demo: 'https://prn-6.github.io/code68/',
+        image: null,
+        challenge:
+            'Running modern 7B+ coding LLMs locally exhausts GPU memory and slows developer hardware, while fully cloud-based web assistants lack direct, secure access to local terminal tools, file systems, and Git repositories.',
+        solution:
+            'Engineered Code68 with a hybrid split-brain architecture: the heavy reasoning model runs remotely (via FastAPI on free remote GPUs or vLLM), while a lightweight local Python CLI securely executes tool calls, surgical unified diffs, and sandboxed terminal commands.',
+        achievements: [
+            {
+                title: 'Real Tool-Calling Agent Loop',
+                description:
+                    'Autonomous multi-step problem solving, recursive loop detection, and structured tool failure recovery.'
+            },
+            {
+                title: 'Surgical Code Editing',
+                description:
+                    'Uses precise unified diffs and line replacements rather than blindly rewriting entire source files.'
+            },
+            {
+                title: 'Strict Security Sandbox',
+                description:
+                    '5 granular permission levels (read-only to full-auto), directory traversal guards, secret redaction, and full audit logs.'
+            },
+            {
+                title: 'Provider Agnostic Engine',
+                description:
+                    'Seamlessly swap between remote Kaggle instances, vLLM, Ollama, OpenRouter, or OpenAI without changing client code.'
+            }
+        ]
     }
 ];
 
