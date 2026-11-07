@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import useSwarm from '../hooks/useSwarm';
 import {
     Terminal,
     Copy,
@@ -158,6 +159,7 @@ const products = [
 ];
 
 const Products = () => {
+    useSwarm();
     const [copiedCmd, setCopiedCmd] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [activeFilter, setActiveFilter] = useState('all');

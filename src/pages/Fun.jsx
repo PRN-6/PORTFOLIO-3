@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 import Navbar from '../components/Navbar';
+import useSwarm from '../hooks/useSwarm';
 import { supabase, isSupabaseConfigured } from '../supabase';
 import { RotateCcw, Bot, Globe, ArrowLeftRight, AlertCircle, Wifi, WifiOff } from 'lucide-react';
 
@@ -14,6 +15,7 @@ import { RotateCcw, Bot, Globe, ArrowLeftRight, AlertCircle, Wifi, WifiOff } fro
  * - 2 Modes: Global (Multiplayer) and AI (vs Bot)
  */
 const FunPage = () => {
+  useSwarm();
   const [game, setGame] = useState(() => new Chess());
   const [playerColor, setPlayerColor] = useState('w'); // 'w' | 'b' | 'both'
   const [gameMode, setGameMode] = useState(isSupabaseConfigured ? 'global' : 'ai'); // 'global' | 'ai'

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import useSwarm from '../hooks/useSwarm';
 import mainprofilepic from '../assets/hotaro.jpg';
 import { FaNode, FaReact, FaJava } from 'react-icons/fa';
 import {
@@ -43,6 +44,7 @@ const techStack = [
 const NAMESPACE = 'prinson-portfolio-2026-v2';
 
 const About = () => {
+    useSwarm();
     const [globalClicks, setGlobalClicks] = useState(() => {
         const cached = localStorage.getItem('prinson_cached_clicks');
         return cached ? parseInt(cached, 10) : 0;

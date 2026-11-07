@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
+import useSwarm from '../hooks/useSwarm';
 import { ArrowUpRight, Send, Mail, MapPin, Clock } from 'lucide-react';
 import { SiGithub, SiLinkedin, SiX } from 'react-icons/si';
 
 const Contact = () => {
+    useSwarm();
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
 
