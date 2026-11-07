@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router'
 import { AnimatePresence } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Products from './pages/Products'
@@ -13,17 +14,20 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path='/' element={<PageTransition><Home /></PageTransition>} />
-        <Route path='/products' element={<PageTransition><Products /></PageTransition>} />
-        <Route path='/projects' element={<PageTransition><Projects /></PageTransition>} />
-        <Route path='/about' element={<PageTransition><About /></PageTransition>} />
-        <Route path='/contact' element={<PageTransition><Contact /></PageTransition>} />
-        <Route path='/fun' element={<PageTransition><Fun /></PageTransition>} />
-        <Route path='*' element={<PageTransition><NotFound /></PageTransition>} />
-      </Routes>
-    </AnimatePresence>
+    <>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path='/' element={<PageTransition><Home /></PageTransition>} />
+          <Route path='/products' element={<PageTransition><Products /></PageTransition>} />
+          <Route path='/projects' element={<PageTransition><Projects /></PageTransition>} />
+          <Route path='/about' element={<PageTransition><About /></PageTransition>} />
+          <Route path='/contact' element={<PageTransition><Contact /></PageTransition>} />
+          <Route path='/fun' element={<PageTransition><Fun /></PageTransition>} />
+          <Route path='*' element={<PageTransition><NotFound /></PageTransition>} />
+        </Routes>
+      </AnimatePresence>
+      <Analytics />
+    </>
   )
 }
 
