@@ -7,25 +7,17 @@ import { enableSwarm } from '@leozodiac/swarm66';
  */
 export const useSwarm = (options) => {
   useEffect(() => {
-    let swarm = null;
-
-    // Small delay to let page transitions and framer-motion elements mount
-    const timer = setTimeout(() => {
-      swarm = enableSwarm({
-        hideOnStart: true,
-        typewriterEffect: true,
-        vanishAtCursor: true,
-        ...options,
-      });
-    }, 60);
+    const swarm = enableSwarm({
+      hideOnStart: true,
+      typewriterEffect: true,
+      vanishAtCursor: true,
+      ...options,
+    });
 
     return () => {
-      clearTimeout(timer);
-      if (swarm) {
-        swarm.destroy?.();
-      }
+      swarm.destroy?.();
     };
-  }, [options]);
+  }, []);
 };
 
 export default useSwarm;
