@@ -8,6 +8,8 @@ import { enableSwarm } from '@leozodiac/swarm66';
 export const useSwarm = (options) => {
   useEffect(() => {
     const swarm = enableSwarm({
+      agentCount: 28,
+      buildDuration: 280,
       hideOnStart: true,
       typewriterEffect: true,
       vanishAtCursor: true,
