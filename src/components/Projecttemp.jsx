@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Terminal, Copy, Check, X, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Terminal, Copy, Check, X, Sparkles, MousePointer2 } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import p1 from '../assets/p1.webp';
 import p2 from '../assets/p2.webp';
@@ -147,6 +147,162 @@ const projectsData = [
                 title: 'Provider Agnostic Engine',
                 description:
                     'Seamlessly swap between remote Kaggle instances, vLLM, Ollama, OpenRouter, or OpenAI without changing client code.'
+            }
+        ]
+    },
+    {
+        id: 'swarm66',
+        title: 'swarm66',
+        tagline: 'Universal Autonomous Cursor Swarm & Real-Time DOM Visual Engine.',
+        tags: ['TypeScript', 'Boids Physics', 'DOM Engine', 'Zero-Dependency', 'npm'],
+        version: 'v1.0.4',
+        description:
+            'A universal plug-and-play visual engine that reverse-engineers any webpage\'s DOM on the fly. Autonomous AI/Figma-style cursors swarm in using Reynolds Boids flocking physics to construct the webpage live before your eyes, then converge 360° into the user\'s pointer.',
+        github: 'https://github.com/PRN-6/swarm66',
+        terminalCommand: 'npm install @leozodiac/swarm66',
+        demo: 'https://prn-6.github.io/swarm66/',
+        image: null,
+        challenge:
+            'Standard webpage loading animations and transitions are static, pre-rendered, or require tedious element-by-element CSS rigging. Building an emergent, real-time live construction effect that works out of the box on any website with zero layout shift didn\'t exist.',
+        solution:
+            'Engineered @leozodiac/swarm66, a zero-dependency TypeScript library combining an on-the-fly DOM indexer with Reynolds Boids flocking physics. Dispatches 18–28 autonomous cursor agents organized into squads that draw Figma selection boxes, alignment wireframes, and typewriter reveals before merging seamlessly into the user\'s cursor.',
+        achievements: [
+            {
+                title: 'Autonomous DOM Scanner & Reverse-Engineering',
+                description:
+                    'Dynamically indexes viewport elements, hierarchy, and bounding boxes without layout shift or manual selectors.'
+            },
+            {
+                title: 'Multi-Agent Boids Flocking Simulation',
+                description:
+                    'Full separation, alignment, and cohesion physics with dynamic speed limits, wall repulsion, and cursor following.'
+            },
+            {
+                title: 'Figma-Style Construction Tooling',
+                description:
+                    'Draws Figma blue selection boxes (#0d99ff) with live dimension badges (380 × 48), alignment wireframes, and typewriter reveals.'
+            },
+            {
+                title: '360° Orbit Convergence & Pointer Merger',
+                description:
+                    'All cursors accelerate toward the user\'s pointer, execute a synchronized 360° circular orbit, and collapse with neon ripples.'
+            }
+        ]
+    },
+    {
+        id: 'programmer66',
+        title: 'programmer66',
+        tagline: 'Autonomous 3D Drone Simulator, Python Automation Runtime & Real-Time Tournament Platform.',
+        tags: ['Three.js', 'React 19', 'Monaco Editor', 'Python AST', 'Supabase Realtime', 'Zustand'],
+        version: 'v1.0.0',
+        description:
+            'An autonomous 3D agricultural drone simulator and live multiplayer coding tournament platform. Write Python scripts in a floating Monaco code editor to command an aerial quadcopter across procedural farmlands, with real-time room code pairing, automated test grading, and live podiums powered by Supabase.',
+        github: 'https://github.com/PRN-6/programmer66',
+        terminalCommand: 'git clone https://github.com/PRN-6/programmer66.git',
+        demo: 'https://programmer66.vercel.app/',
+        image: null,
+        challenge:
+            'Teaching real programming concepts often suffers from a disconnect between abstract code and visual feedback, while competitive hackathon platforms rarely provide interactive, physics-driven 3D environments with live multiplayer evaluation.',
+        solution:
+            'Engineered programmer66, marrying React Three Fiber 3D drone kinematics with an in-browser Python AST lexer/interpreter and a real-time WebSocket tournament engine. Competitors write automation scripts in a multi-tab Monaco editor that physically pilot the drone while being graded live.',
+        achievements: [
+            {
+                title: 'Autonomous 3D Drone Kinematics',
+                description:
+                    'Interactive Three.js terrain with 24-hour day/night cycles, volumetric floodlights, dynamic weather, and flight physics (pitch tilt, roll banking, particle sprays).'
+            },
+            {
+                title: 'Floating In-Browser Python AST Runtime',
+                description:
+                    'Custom Lexer, AST Parser, and step-by-step asynchronous interpreter with infinite loop protection inside a floating, multi-tab Monaco IDE.'
+            },
+            {
+                title: 'Real-Time Multiplayer Tournament Engine',
+                description:
+                    'Instant 4-digit room code pairing, automated test grading, dynamic field topographies, live code inspection, and instant podium scoreboards powered by Supabase Realtime.'
+            },
+            {
+                title: '60 FPS High-Performance Architecture',
+                description:
+                    'Optimized for low-end hardware with dynamic DPR, scene isolation, throttled state subscriptions via Zustand, and React 19 architecture.'
+            }
+        ]
+    },
+    {
+        id: 'portfolio66',
+        title: 'PORTFOLIO66',
+        tagline: 'Universal Creative Portfolio Template with Autonomous Swarm & Local Visual CMS Studio.',
+        tags: ['React 19', 'TypeScript', 'Tailwind CSS', 'Framer Motion', '@leozodiac/swarm66', 'Visual CMS'],
+        version: 'v1.0.0',
+        description:
+            'A modern creative portfolio template designed with zero infinite vertical scroll. Features autonomous AI cursor swarm construction powered by @leozodiac/swarm66, single-screen view routing, and an embedded Visual Studio CMS (npm run cms) with drag-and-drop media uploads.',
+        github: 'https://github.com/PRN-6/portfolio66',
+        terminalCommand: 'git clone https://github.com/PRN-6/portfolio66.git',
+        demo: 'https://portfolio66-fawn.vercel.app/',
+        image: null,
+        challenge:
+            'Setting up developer portfolios usually requires choosing between static un-editable templates or heavy third-party SaaS CMS platforms that lock content behind paid cloud tiers or complicated configurations.',
+        solution:
+            'Engineered PORTFOLIO66 with a zero-scroll single-screen architecture and a local Visual Studio CMS running on port 3333. Content and photos are edited visually with live preview hot-reloading into local TypeScript state and automatic timestamped backups.',
+        achievements: [
+            {
+                title: 'Autonomous Swarm Construction',
+                description:
+                    'Integrated @leozodiac/swarm66 for live Figma-style AI cursor webpage assembly with a dedicated "REPLAY SWARM" controller.'
+            },
+            {
+                title: 'Zero Infinite Vertical Scroll',
+                description:
+                    '8 screen-fitting views (Hero, Studio Overview, Identity, Color & Type System, Projects, Articles, FAQ, Contact) with fluid keyboard navigation.'
+            },
+            {
+                title: 'Local Visual Studio CMS',
+                description:
+                    'Zero-code graphical editor (npm run cms) running on port 3333 with drag-and-drop file uploaders and automatic .backups/ snapshotting.'
+            },
+            {
+                title: '1-Click Vercel Architecture',
+                description:
+                    'Pre-configured TypeScript build with zero-config Vite pipeline and instant global CDN edge deployment.'
+            }
+        ]
+    },
+    {
+        id: 'omarchy-asanagi-theme',
+        title: 'Asanagi Umi Theme',
+        tagline: 'Dark Minimalist Anime Theme for Omarchy OS, Hyprland & Arch Linux.',
+        tags: ['Linux', 'Hyprland', 'Waybar', 'Arch Linux', 'Omarchy OS', 'Kitty'],
+        version: 'v1.0.0',
+        description:
+            'A dark minimalist anime theme custom-tailored for Omarchy OS, standalone Hyprland, and Arch Linux desktop environments. Features handcrafted palettes extracted from Umi Asanagi artwork, glassmorphism Waybar styling, custom Fastfetch cards, Btop themes, and multi-terminal configurations.',
+        github: 'https://github.com/PRN-6/omarchy-asanagi-theme',
+        terminalCommand: 'omarchy-theme-install https://github.com/PRN-6/omarchy-asanagi-theme',
+        demo: '',
+        image: null,
+        challenge:
+            'Linux desktop ricing across Wayland compositors often requires maintaining fragmented configurations across dozens of disparate dotfiles (Hyprland, Waybar, Rofi, Alacritty, Kitty, Btop, Mako) with clashing color coordinates and tedious manual reload scripts.',
+        solution:
+            'Architected a unified, cohesive aesthetic theme for Omarchy OS. Centralizes the palette in colors.toml with automated installation scripts and live HTML desktop previewers, delivering synchronized deep obsidian plum backgrounds, orchid purple accents, and ruby crimson highlights across all system apps.',
+        achievements: [
+            {
+                title: 'Centralized Omarchy System Palette',
+                description:
+                    'Defined unified color mapping (#13091f Obsidian Plum, #a855f7 Orchid Purple, #f43f6e Ruby Crimson) across colors.toml for instant multi-app theme switching.'
+            },
+            {
+                title: 'Full Wayland & Hyprland Ecosystem',
+                description:
+                    'Tailored configurations for Hyprland window decorations/blur, glassmorphic Waybar top-bar modules, Rofi/Walker launcher, and Mako notifications.'
+            },
+            {
+                title: 'Multi-Terminal Shell Suite',
+                description:
+                    'Hand-tuned color schemes and font metrics crafted for Kitty, Ghostty, Alacritty, Foot, Btop system monitor, and Starship shell prompt.'
+            },
+            {
+                title: 'Single-Command Distribution & Web Preview',
+                description:
+                    'Instant 1-click deployment via omarchy-theme-install and an interactive browser-based desktop simulation via preview.html.'
             }
         ]
     }
@@ -319,6 +475,43 @@ const Projecttemp = () => {
                                 decoding="async"
                                 className="w-full h-full object-cover"
                             />
+                        ) : proj.id === 'swarm66' ? (
+                            <div className="w-full h-full bg-[#08090d] border border-zinc-800/80 p-4 rounded flex flex-col justify-between font-mono-code relative overflow-hidden select-none">
+                                <div className="absolute inset-0 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:14px_14px] opacity-40 pointer-events-none" />
+
+                                <div className="flex items-center justify-between border-b border-zinc-900 pb-2 z-10 text-[10px]">
+                                    <span className="text-zinc-500 font-mono-code">// DOM REVERSE-ENGINEER</span>
+                                    <span className="text-cyan-400 font-mono-code">18 SQUAD AGENTS</span>
+                                </div>
+
+                                <div className="my-auto relative h-28 flex items-center justify-center z-10">
+                                    <div className="border border-[#0d99ff] bg-[#0d99ff]/10 px-5 py-2.5 rounded relative">
+                                        <span className="absolute -top-3 right-1 bg-[#0d99ff] text-black text-[9px] font-bold px-1.5 py-0.2 rounded font-mono-code">
+                                            380 × 48
+                                        </span>
+                                        <span className="text-xs text-white font-mono-code font-medium">&lt;SwarmCanvas /&gt;</span>
+                                    </div>
+
+                                    <div className="absolute top-1 left-3 flex items-center gap-1 animate-pulse">
+                                        <MousePointer2 size={13} className="text-[#FF5722] fill-[#FF5722]" />
+                                        <span className="bg-[#FF5722] text-white text-[8px] px-1 py-0.5 rounded font-mono-code">
+                                            Figma AI
+                                        </span>
+                                    </div>
+
+                                    <div className="absolute bottom-1 right-4 flex items-center gap-1">
+                                        <MousePointer2 size={13} className="text-[#00BCD4] fill-[#00BCD4]" />
+                                        <span className="bg-[#00BCD4] text-black text-[8px] font-bold px-1 py-0.5 rounded font-mono-code">
+                                            Agent-α
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="pt-2 border-t border-zinc-900 flex items-center justify-between text-[10px] text-zinc-500 z-10 font-mono-code">
+                                    <span>Boids Physics</span>
+                                    <span className="text-emerald-400 font-semibold">360° ORBIT MERGER</span>
+                                </div>
+                            </div>
                         ) : (
                             <div className="w-full h-full bg-[#121212] flex items-center justify-center">
                                 <SiGithub size={64} className="text-zinc-800" />

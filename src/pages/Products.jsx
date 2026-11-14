@@ -10,9 +10,10 @@ import {
     ShieldCheck,
     Cpu,
     X,
-    ExternalLink
+    ExternalLink,
+    MousePointer2
 } from 'lucide-react';
-import { SiGithub, SiNodedotjs, SiPython } from 'react-icons/si';
+import { SiGithub, SiNodedotjs, SiPython, SiTypescript } from 'react-icons/si';
 import p5 from '../assets/p5.webp';
 import p6 from '../assets/p6.webp';
 import p7 from '../assets/p7.webp';
@@ -155,6 +156,52 @@ const products = [
                 desc: 'Seamlessly swap between remote Kaggle instances, vLLM, Ollama, OpenRouter, or OpenAI without changing client code.'
             }
         ]
+    },
+    {
+        id: 'swarm66',
+        number: '04',
+        title: 'swarm66',
+        category: 'Universal DOM Cursor Swarm & Visual Engine',
+        tagline: 'Autonomous AI Cursor Swarm & Real-Time DOM Visual Engine.',
+        version: 'v1.0.4',
+        status: 'Stable / npm',
+        statusColor: 'cyan',
+        platform: 'Universal Client (React, Next.js, Vue, Svelte, HTML)',
+        platformIcon: SiTypescript,
+        quickCommand: 'npm install @leozodiac/swarm66',
+        github: 'https://github.com/PRN-6/swarm66',
+        demo: 'https://prn-6.github.io/swarm66/',
+        image: null,
+        summary:
+            'A universal plug-and-play visual engine that reverse-engineers any webpage\'s DOM on the fly. Autonomous AI/Figma-style cursors swarm in using Reynolds Boids flocking physics to construct the webpage live before your eyes, then converge 360° into the user\'s pointer.',
+        challenge:
+            'Standard webpage loading animations and transitions are static, pre-rendered, or require tedious element-by-element CSS rigging. Building an emergent, real-time live construction effect that works out of the box on any website with zero layout shift didn\'t exist.',
+        solution:
+            'Engineered @leozodiac/swarm66, a zero-dependency TypeScript library combining an on-the-fly DOM indexer with Reynolds Boids flocking physics. Dispatches 18–28 autonomous cursor agents organized into squads that draw Figma selection boxes, alignment wireframes, and typewriter reveals before merging seamlessly into the user\'s cursor.',
+        specs: [
+            { label: 'Physics Engine', value: 'Reynolds Boids Flocking Simulation' },
+            { label: 'Dependencies', value: '0 Runtime Dependencies (Universal)' },
+            { label: 'Frameworks', value: 'React, Next.js, Vue, Svelte, HTML' },
+            { label: 'Finale', value: '360° Circular Orbit Convergence' }
+        ],
+        features: [
+            {
+                title: 'Autonomous DOM Scanner & Reverse-Engineering',
+                desc: 'Dynamically indexes viewport elements, hierarchy, and bounding boxes without layout shift or manual selectors.'
+            },
+            {
+                title: 'Multi-Agent Boids Flocking Simulation',
+                desc: 'Full separation, alignment, and cohesion physics with dynamic speed limits, wall repulsion, and cursor following.'
+            },
+            {
+                title: 'Figma-Style Construction Tooling',
+                desc: 'Draws Figma blue selection boxes (#0d99ff) with live dimension badges (380 × 48), alignment wireframes, and typewriter reveals.'
+            },
+            {
+                title: '360° Orbit Convergence & Pointer Merger',
+                desc: 'All cursors accelerate toward the user\'s pointer, execute a synchronized 360° circular orbit, and collapse with neon ripples.'
+            }
+        ]
     }
 ];
 
@@ -228,7 +275,7 @@ const Products = () => {
                         <div className="flex flex-wrap items-center gap-2 font-mono-code text-[11px] text-zinc-400 shrink-0">
                             <span className="border border-zinc-800 bg-zinc-950 px-2.5 py-1 rounded flex items-center gap-1.5">
                                 <Cpu size={12} className="text-emerald-400" />
-                                3 Native Softwares
+                                4 Native Softwares
                             </span>
                             <span className="border border-zinc-800 bg-zinc-950 px-2.5 py-1 rounded flex items-center gap-1.5">
                                 <ShieldCheck size={12} className="text-cyan-400" />
@@ -246,7 +293,7 @@ const Products = () => {
                                 : 'bg-black text-zinc-500 hover:text-zinc-300 border border-zinc-900'
                                 }`}
                         >
-                            All Products (3)
+                            All Products (4)
                         </button>
                         {products.map((p) => (
                             <button
@@ -422,8 +469,46 @@ const Products = () => {
                                                 loading="lazy"
                                                 className="w-full h-full object-cover rounded transition-transform duration-500 group-hover/preview:scale-[1.03]"
                                             />
+                                        ) : p.id === 'swarm66' ? (
+                                            /* Live Swarm66 autonomous cursor simulation */
+                                            <div className="w-full h-full bg-[#08090d] border border-zinc-800/80 p-4 rounded flex flex-col justify-between font-mono-code relative overflow-hidden select-none">
+                                                <div className="absolute inset-0 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:14px_14px] opacity-40 pointer-events-none" />
+
+                                                <div className="flex items-center justify-between border-b border-zinc-900 pb-2 z-10 text-[10px]">
+                                                    <span className="text-zinc-500">// DOM REVERSE-ENGINEER</span>
+                                                    <span className="text-cyan-400">18 SQUAD AGENTS</span>
+                                                </div>
+
+                                                <div className="my-auto relative h-28 flex items-center justify-center z-10">
+                                                    <div className="border border-[#0d99ff] bg-[#0d99ff]/10 px-5 py-2.5 rounded relative">
+                                                        <span className="absolute -top-3 right-1 bg-[#0d99ff] text-black text-[9px] font-bold px-1.5 py-0.2 rounded font-mono-code">
+                                                            380 × 48
+                                                        </span>
+                                                        <span className="text-xs text-white font-mono-code font-medium">&lt;SwarmCanvas /&gt;</span>
+                                                    </div>
+
+                                                    <div className="absolute top-1 left-3 flex items-center gap-1 animate-pulse">
+                                                        <MousePointer2 size={13} className="text-[#FF5722] fill-[#FF5722]" />
+                                                        <span className="bg-[#FF5722] text-white text-[8px] px-1 py-0.5 rounded font-mono-code">
+                                                            Figma AI
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="absolute bottom-1 right-4 flex items-center gap-1">
+                                                        <MousePointer2 size={13} className="text-[#00BCD4] fill-[#00BCD4]" />
+                                                        <span className="bg-[#00BCD4] text-black text-[8px] font-bold px-1 py-0.5 rounded font-mono-code">
+                                                            Agent-α
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="pt-2 border-t border-zinc-900 flex items-center justify-between text-[10px] text-zinc-500 z-10">
+                                                    <span>Boids Physics</span>
+                                                    <span className="text-emerald-400 font-semibold">360° ORBIT MERGER</span>
+                                                </div>
+                                            </div>
                                         ) : (
-                                            /* Live Terminal agent aesthetic for Code68 */
+                                            /* Live Terminal agent aesthetic for Code68 / generic */
                                             <div className="w-full h-full bg-zinc-950/90 border border-zinc-900 p-4 rounded flex flex-col justify-between font-mono-code text-xs">
                                                 <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
                                                     <div className="flex items-center gap-1.5">
